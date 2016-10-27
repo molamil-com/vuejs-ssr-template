@@ -22,21 +22,21 @@ async function start() {
         webpackConfig.filter(x => x.target !== 'node').forEach(config => {
             config.entry = ['webpack-hot-middleware/client', config.entry.app]
 
-			      config.plugins.push(new webpack.HotModuleReplacementPlugin())
+            config.plugins.push(new webpack.HotModuleReplacementPlugin())
 
             const compiler = webpack(webpackConfig)
             compiler.apply(new webpack.ProgressPlugin({
-			          profile: false
+                profile: false
             }))
 
             const hotMiddlewares = compiler.compilers.filter(compiler => {
-			          return compiler.options.target !== 'node'
+                return compiler.options.target !== 'node'
             }).map(compiler => webpackHotMiddleware(compiler))
 
             const wpMiddleware = webpackMiddleware(compiler, {
-			          publicPath: '/',
+                publicPath: '/',
                 index: 'index.twig',
-			          stats: {
+                stats: {
                     colors:       true,
                     modules:      false,
                     children:     true,
@@ -44,7 +44,7 @@ async function start() {
                     chunkModules: false
                 },
                 serverSideRender: true
-		        })
+            })
 
             const fs = wpMiddleware.fileSystem
 
@@ -52,20 +52,20 @@ async function start() {
                 const watchPath = resolve(fs.readFileSync(appConfig.path.app + '/index.twig', 'utf-8'))
 
                 runServer(fs, (err, host) => {
-				            if(!err) {
+                    if(!err) {
                         const bs = BrowserSync.create()
 
                         bs.init({
-						                proxy: {
-							                  target: host,
-							                  middleware: [wpMiddleware, ...hotMiddlewares],
-						                },
-						                files: [watchPath + '/*'],
-					              }, resolve)
+                            proxy: {
+                                target: host,
+                                middleware: [wpMiddleware, ...hotMiddlewares],
+                            },
+                            files: [watchPath + '/*'],
+                        }, resolve)
 
                         handleServerBundleComplete = runServer
-				            }
-			          })
+                    }
+                })
             }
             compiler.plugin('done', () => handleServerBundleComplete(fs))
         })
