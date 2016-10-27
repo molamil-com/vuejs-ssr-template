@@ -18,9 +18,9 @@ const serverBundleConfig = {
             'process.env': {
                 NODE_ENV: '"production"'
             }
-			      //VUE_ENV: "'server'",
+            //VUE_ENV: "'server'",
             //BROWSER: false
-		    })
+        })
     ]
 }
 

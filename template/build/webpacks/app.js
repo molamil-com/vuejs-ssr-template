@@ -8,8 +8,8 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 const postcss = [
-	  require('precss')(),
-	  require('autoprefixer')({ browsers: ['last 3 versions'] })
+    require('precss')(),
+    require('autoprefixer')({ browsers: ['last 3 versions'] })
 ]
 
 const development = {
