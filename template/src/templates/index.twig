@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% for meta in context.meta %}
+            <meta name="{{ meta.name }}" content="{{ meta.content }}">
+        {% endfor %}
+
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
+        <title>vue-ssr-poc</title>
+    </head>
+    <body>
+        <script>
+            window.__INITIAL_STATE__ = {{initialState}}
+        </script>
+
+        {{app|raw}}
+    </body>
+</html>

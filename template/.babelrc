@@ -1,0 +1,15 @@
+{
+    "presets": [
+        [
+            "es2015",
+            {
+                "modules": "commonjs"
+            }
+        ],
+        [
+            "stage-2"
+        ]
+    ],
+    "plugins": ["transform-runtime"],
+    "comments": false
+}

@@ -1,0 +1,29 @@
+{
+    root: true,
+    parserOptions: {
+        sourceType: 'module'
+    },
+    extends: "airbnb-base",
+    rules: {
+        "semi": ["error", "never"],
+        "indent": ["error", 4],
+        "linebreak-style": ["error", "unix"],
+        "object-shorthand": ["error", "always"],
+        "import/extensions": ["error", "always", {
+            "js": "never",
+            "vue": "never"
+        }],
+        "no-param-reassign": [1, { "props": false }]
+    },
+    defaultSeverity: "warning",
+    plugins: [
+        'html', 'import'
+    ],
+    'settings': {
+        'import/resolver': {
+            'webpack': {
+                'config': 'build/webpacks/base.js'
+            }
+        }
+    }
+}
