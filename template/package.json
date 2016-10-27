@@ -1,9 +1,6 @@
 {
-  "name": "vue-ssr-poc",
-  "version": "1.0.0",
-  "description": "SSR with Vue - POC",
-  "author": "KHJ <kasperhelweg@gmail.com>",
-  "private": true,
+  "name": "{{ name }}",
+  "version": "0.5.0",
   "scripts": {
     "dev": "cross-env NODE_ENV=development  babel-node build/development/tools/run ../server",
     "build": "cross-env NODE_ENV=production babel-node build/build",
