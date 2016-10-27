@@ -4,9 +4,9 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% for meta in context.meta %}
-            <meta name="{{ meta.name }}" content="{{ meta.content }}">
-        {% endfor %}
+        \{% for meta in context.meta %}
+            <meta name="\{{ meta.name }}" content="\{{ meta.content }}">
+        \{% endfor %}
 
         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
@@ -14,9 +14,9 @@
     </head>
     <body>
         <script>
-            window.__INITIAL_STATE__ = {{initialState}}
+            window.__INITIAL_STATE__ = \{{initialState}}
         </script>
 
-        {{app|raw}}
+        \{{app|raw}}
     </body>
 </html>
