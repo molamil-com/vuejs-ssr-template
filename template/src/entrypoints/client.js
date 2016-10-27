@@ -1,3 +1,3 @@
-import { vm } from '../app'
+import { vm } from 'app'
 
 vm.$mount('#app')
