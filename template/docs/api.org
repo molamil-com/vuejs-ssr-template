@@ -1,0 +1,14 @@
+#+TITLE: client.js
+#+AUTHOR: KHJ
+#+EMAIL: kasperhelweg@gmail.com
+#+LANGUAGE: en
+#+STARTUP: align hidestars lognotestate
+#+PROPERTY: :mkdir yes
+
+#+BEGIN_SRC json :tangle no :padline no
+{
+        who:  string,
+        what: string,
+        why:  string
+}
+#+END_SRC

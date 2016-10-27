@@ -1,56 +1,40 @@
 <template>
     <div id="app">
-        <div class="header">
-            <home-menu v-bind:menu="menu"></home-menu>
-        </div>
+        <img src="/assets/logo.png">
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import HomeMenu from 'components/HomeMenu'
-
     export default {
-        components: {
-            HomeMenu,
-        },
+        name: 'app',
         data() {
-            return {
-                menu: {
-                    header: 'wishlist-app',
-                    items: [
-                        { to: '/', title: 'home' },
-                        { to: '/wishlist', title: 'wishlist' },
-                    ],
-                },
-            }
+            return { }
         },
     }
 </script>
 
 <style>
-html {
-    height: 100%;
-}
-
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    line-height: 1.7em;
-}
-
 #app {
-    color: #2c3e50;
-    margin-top: -100px;
-    max-width: 600px;
-    font-family: Source Sans Pro, Helvetica, sans-serif;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
 }
-
-.logo {
-    width: 100px;
-    height: 100px
+h1, h2 {
+    font-weight: normal;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+li {
+    display: inline-block;
+    margin: 0 10px;
+}
+a {
+    color: #42b983;
 }
 </style>

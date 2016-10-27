@@ -1,6 +1,4 @@
 .DS_Store
-paper/
-*.org
 dist/
 node_modules/
 npm-debug.log
