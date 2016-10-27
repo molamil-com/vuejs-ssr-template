@@ -6,6 +6,8 @@ Vue.use(Vuex)
 const defaultState = {
 }
 
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-undef */
 const inBrowser = typeof window !== 'undefined'
 const state = (inBrowser && window.__INITIAL_STATE__) || defaultState
 
