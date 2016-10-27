@@ -20,14 +20,14 @@ const config = {
         // In our experience, they generally work as expected,
         // just be aware of this issue when enabling this option.
         cssSourceMap: false,
-	      port: 5000
+        port: 5000
     },
     path: {
-		    root: resolve(__dirname, '..'),
-		    src:  join(__dirname, '..', '/src'),
-		    dist: join(__dirname, '..', '/dist'),
-		    app:  join(__dirname, '..', '/dist/app')
-	  }
+        root: resolve(__dirname, '..'),
+        src:  join(__dirname, '..', '/src'),
+        dist: join(__dirname, '..', '/dist'),
+        app:  join(__dirname, '..', '/dist/app')
+    }
 }
 
 export default config
