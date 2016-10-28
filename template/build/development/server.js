@@ -25,8 +25,9 @@ async function start() {
 
         const compiler = webpack(webpackConfig)
 
-        compiler.apply(new webpack.ProgressPlugin({
-            profile: false
+        compiler.apply(new ProgressBarPlugin({
+            format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
+            clear: false
         }))
 
         const hotMiddlewares = compiler.compilers.filter(compiler => {
