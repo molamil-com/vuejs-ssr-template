@@ -13,10 +13,6 @@ import runServer from './runServer'
 import path from 'path'
 const resolve = file => path.resolve(__dirname, file)
 
-//import run from './tools/run'
-//import clean from './tools/clean'
-//import copy from './tools/copy'
-
 async function start() {
     await new Promise(resolve => {
         webpackConfig.filter(x => x.target !== 'node').forEach(config => {
