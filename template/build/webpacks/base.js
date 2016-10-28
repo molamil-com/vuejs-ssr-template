@@ -4,7 +4,7 @@ import config from '../../config/config'
 const baseConfig = {
     resolve: {
         extensions: ['.js', '.json', '.vue', '.css' ],
-        modules: ['src', 'views', 'node_modules'],
+        modules: ['src', 'node_modules'],
         alias: {
             'vue$': 'vue/dist/vue.js',
         }
@@ -54,7 +54,7 @@ const baseConfig = {
                     limit: 10000,
                     name: 'fonts/[name].[hash:7].[ext]'
                 }
-            }
+            },
         ]
     },
     plugins: [
