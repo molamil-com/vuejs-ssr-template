@@ -10,6 +10,18 @@ const serverBundleConfig = {
         libraryTarget: 'commonjs2',
         filename: 'bundle.server.js'
     },
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader: 'url',
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url',
+            },
+        ]
+    },
     target: 'node',
     externals: [nodeExt()],
     devtool: false,
