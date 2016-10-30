@@ -9,4 +9,7 @@ const clientBundleConfig = merge(base, app)
 const serverBundleConfig = merge(base, serverBundle)
 const serverConfig = merge(base, server)
 
-export default [clientBundleConfig, serverBundleConfig, serverConfig]
+export default {
+    browsers: [clientBundleConfig],
+    node: [serverBundleConfig, serverConfig],
+}

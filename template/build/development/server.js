@@ -20,7 +20,7 @@ const resolve = file => path.resolve(__dirname, file)
 function createBundle(webpacks) {
     return new Promise(resolve => {
 
-        const browser = webpacks.filter(x => x.target !== 'node').map(pack => {
+        const browsers = webpacks.browsers.map(pack => {
             // create new pack instead of mutating...currently only returning non-node.
             // or just mutate and return original pack-array....
             pack.entry = ['webpack-hot-middleware/client', pack.entry.app]
@@ -29,9 +29,9 @@ function createBundle(webpacks) {
             return pack
         })
 
-        const node = webpacks.filter(x => x.target == 'node')
+        const node = webpacks.node
 
-        resolve(browser.concat(node))
+        resolve(browsers.concat(node))
     })
 }
 
