@@ -88,7 +88,6 @@ function initServer(compiler, middlewares) {
                     files: [],
                 }, resolve)
 
-
                 fs.watch(`${appConfig.path.app}/index.twig`)
 
                 emitter.on('hot', () => bs.reload())
