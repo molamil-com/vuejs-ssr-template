@@ -88,6 +88,26 @@ const clientBundleConfig = merge({
     entry: {
         app: config.path.src + '/entrypoints/client.js'
     },
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader: 'url',
+                query: {
+                    limit: 10000,
+                    name: 'img/[name].[hash:7].[ext]'
+                }
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url',
+                query: {
+                    limit: 10000,
+                    name: 'fonts/[name].[hash:7].[ext]'
+                }
+            },
+        ]
+    },
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin()
     ]
