@@ -27,7 +27,7 @@ function runServer(fs, cb) {
                 emitter = new events.EventEmitter()
                 cb(null, match[1], emitter)
             } else {
-                // if(fs.hot()) emitter.emit('hot')
+                if(fs.hot()) emitter.emit('hot')
             }
         }
     }

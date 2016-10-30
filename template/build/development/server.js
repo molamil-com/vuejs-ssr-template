@@ -80,7 +80,6 @@ function initServer(compiler, middlewares) {
                 if (err) throw err
 
                 const bs = BrowserSync.create()
-
                 bs.init({
                     proxy: {
                         middleware: [wpMiddleware, ...hotMiddlewares],
@@ -88,6 +87,9 @@ function initServer(compiler, middlewares) {
                     },
                     files: [],
                 }, resolve)
+
+
+                fs.watch(`${appConfig.path.app}/index.twig`)
 
                 emitter.on('hot', () => bs.reload())
                 bundlingComplete = runServer
