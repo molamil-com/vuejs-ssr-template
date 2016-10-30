@@ -20,17 +20,18 @@ const resolve = file => path.resolve(__dirname, file)
 function createBundle(webpacks) {
     return new Promise(resolve => {
 
-        const clients = webpacks.filter(x => x.target !== 'node').map(pack => {
+        const browser = webpacks.filter(x => x.target !== 'node').map(pack => {
             // create new pack instead of mutating...currently only returning non-node.
+            // or just mutate and return original pack-array....
             pack.entry = ['webpack-hot-middleware/client', pack.entry.app]
             pack.plugins.push(new webpack.HotModuleReplacementPlugin())
 
             return pack
         })
 
-        const servers = webpacks.filter(x => x.target == 'node')
+        const node = webpacks.filter(x => x.target == 'node')
 
-        resolve(clients.concat(servers))
+        resolve(browser.concat(node))
     })
 }
 
@@ -49,12 +50,11 @@ function createCompiler(bundle) {
 
 function createMiddlewares(compiler) {
     return new Promise(resolve => {
-        // refactor into middleware function
         const hotMiddlewares = compiler.compilers.filter(compiler => {
             return compiler.options.target !== 'node'
         }).map(compiler => webpackHotMiddleware(compiler))
 
-        // get from conf.
+        // put in config and use also in build.js
         const wpMiddleware = webpackMiddleware(compiler, {
             publicPath: '/',
             index: 'index.twig',
@@ -96,7 +96,7 @@ function initServer(compiler, middlewares) {
         const [hotMiddlewares, wpMiddleware] = middlewares
         const fs = wpMiddleware.fileSystem
 
-        compiler.plugin('done', () => bundlingComplete(fs) )
+        compiler.plugin('done', () => bundlingComplete(fs))
     })
 }
 
