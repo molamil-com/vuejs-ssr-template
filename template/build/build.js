@@ -1,12 +1,15 @@
 import webpack from 'webpack'
-import webpackConfig from './webpack.config'
+import webpacks from './webpack.config'
 
 import ora from 'ora'
+
+const browsers = webpacks.browsers
+const node = webpacks.node
 
 const spinner = ora('building for production...')
 spinner.start()
 
-webpack(webpackConfig, (err, stats) => {
+webpack(browsers.concat(node), (err, stats) => {
     spinner.stop()
 
     if (err) throw err
