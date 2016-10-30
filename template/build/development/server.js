@@ -50,9 +50,7 @@ async function start() {
         const fs = wpMiddleware.fileSystem
 
         let handleServerBundleComplete = (fs) => {
-            const watchPath = resolve(fs.readFileSync(appConfig.path.app + '/index.twig', 'utf-8'))
-
-            runServer(fs, (err, host) => {
+            runServer(fs, (err, host, emitter) => {
                 if(!err) {
                     const bs = BrowserSync.create()
 
@@ -61,13 +59,15 @@ async function start() {
                             target: host,
                             middleware: [wpMiddleware, ...hotMiddlewares],
                         },
-                        files: [watchPath + '/*'],
+                        files: [],
                     }, resolve)
 
+                    emitter.on('hot', () => bs.reload())
                     handleServerBundleComplete = runServer
                 }
             })
         }
+
         compiler.plugin('done', () => handleServerBundleComplete(fs))
     })
 }
