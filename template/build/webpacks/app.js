@@ -36,6 +36,35 @@ const production = {
         filename:      'js/[name].[chunkhash].js',
         chunkFilename: 'js/[id].[chunkhash].js'
     },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel',
+                query: {
+                    babelrc: false,
+                    presets: [
+                        [
+                            'es2015',
+                            {
+                                modules: false
+                            }
+                        ],
+                        [
+                            'stage-2'
+                        ]
+                    ],
+                    plugins: [
+                        'add-module-exports',
+                        'transform-runtime',
+                    ],
+                    comments: false
+                },
+                include: config.path.root,
+                exclude: /node_modules/
+            },
+        ]
+    },
     plugins: [
         new webpack.LoaderOptionsPlugin({
             vue: {
