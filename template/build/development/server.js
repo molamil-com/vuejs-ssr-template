@@ -1,9 +1,6 @@
 import webpack from 'webpack'
 import webpackConfig from '../webpack.config'
 
-import ProgressBarPlugin from 'progress-bar-webpack-plugin'
-import chalk from 'chalk';
-
 import appConfig from '../../config/config'
 
 import webpackMiddleware from 'webpack-middleware'
@@ -13,27 +10,51 @@ import BrowserSync from 'browser-sync'
 
 import runServer from './runServer'
 
+import ProgressBarPlugin from 'progress-bar-webpack-plugin'
+import chalk from 'chalk';
+
 import path from 'path'
 const resolve = file => path.resolve(__dirname, file)
 
-async function start() {
-    await new Promise(resolve => {
-        webpackConfig.filter(x => x.target !== 'node').forEach(config => {
-            config.entry = ['webpack-hot-middleware/client', config.entry.app]
-            config.plugins.push(new webpack.HotModuleReplacementPlugin())
+// put these into a module....
+function createBundle(webpacks) {
+    return new Promise(resolve => {
+
+        const clients = webpacks.filter(x => x.target !== 'node').map(pack => {
+            // create new pack instead of mutating...currently only returning non-node.
+            pack.entry = ['webpack-hot-middleware/client', pack.entry.app]
+            pack.plugins.push(new webpack.HotModuleReplacementPlugin())
+
+            return pack
         })
 
-        const compiler = webpack(webpackConfig)
+        const servers = webpacks.filter(x => x.target == 'node')
+
+        resolve(clients.concat(servers))
+    })
+}
+
+function createCompiler(bundle) {
+    return new Promise(resolve => {
+        const compiler = webpack(bundle)
 
         compiler.apply(new ProgressBarPlugin({
             format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
-            clear: false
+            clear: true
         }))
 
+        resolve(compiler)
+    })
+}
+
+function createMiddlewares(compiler) {
+    return new Promise(resolve => {
+        // refactor into middleware function
         const hotMiddlewares = compiler.compilers.filter(compiler => {
             return compiler.options.target !== 'node'
         }).map(compiler => webpackHotMiddleware(compiler))
 
+        // get from conf.
         const wpMiddleware = webpackMiddleware(compiler, {
             publicPath: '/',
             index: 'index.twig',
@@ -47,29 +68,44 @@ async function start() {
             serverSideRender: true
         })
 
-        const fs = wpMiddleware.fileSystem
+        resolve([hotMiddlewares, wpMiddleware])
+    })
+}
 
-        let handleServerBundleComplete = (fs) => {
-            const watchPath = resolve(fs.readFileSync(appConfig.path.app + '/index.twig', 'utf-8'))
+function initServer(compiler, middlewares) {
+    return new Promise((resolve) => {
+        let bundlingComplete = (fs) => {
 
             runServer(fs, (err, host) => {
-                if(!err) {
-                    const bs = BrowserSync.create()
+                if (err) throw err
 
-                    bs.init({
-                        proxy: {
-                            target: host,
-                            middleware: [wpMiddleware, ...hotMiddlewares],
-                        },
-                        files: [watchPath + '/*'],
-                    }, resolve)
+                const bs = BrowserSync.create()
 
-                    handleServerBundleComplete = runServer
-                }
+                bs.init({
+                    proxy: {
+                        middleware: [wpMiddleware, ...hotMiddlewares],
+                        target: host,
+                    },
+                    //files: ['./**/*.*'],
+                }, resolve)
+
+                bundlingComplete = runServer
             })
         }
-        compiler.plugin('done', () => handleServerBundleComplete(fs))
+
+        const [hotMiddlewares, wpMiddleware] = middlewares
+        const fs = wpMiddleware.fileSystem
+
+        compiler.plugin('done', () => bundlingComplete(fs) )
     })
+}
+
+async function start() {
+    const bundle = await createBundle(webpackConfig)
+    const compiler = await createCompiler(bundle)
+    const middlewares = await createMiddlewares(compiler)
+
+    await initServer(compiler, middlewares)
 }
 
 export default start
