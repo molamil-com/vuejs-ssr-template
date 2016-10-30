@@ -8,7 +8,7 @@ import events from 'events'
 let server, emitter
 
 const RUNNING_REGEXP = /The server is running at http:\/\/(.*?)\//
-const { output } = webpackConfig[2]
+const { output } = webpackConfig.node[1]
 const serverPath = path.join(output.path, output.filename)
 
 function runServer(fs, cb) {
