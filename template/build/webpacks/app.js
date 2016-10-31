@@ -19,6 +19,16 @@ const development = {
         filename:      'js/[name].js',
         chunkFilename: 'js/[id].js'
     },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel',
+                include: config.path.root,
+                exclude: /node_modules/
+            },
+        ]
+    },
     plugins: [
         new ExtractTextPlugin('css/[name].css'),
         new HtmlWebpackPlugin({
