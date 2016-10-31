@@ -10,6 +10,16 @@ const serverConfig = {
         filename: 'server.js',
         libraryTarget: 'commonjs2',
     },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel',
+                include: config.path.root,
+                exclude: /node_modules/
+            },
+        ]
+    },
     target: 'node',
     node: {
         console: false,

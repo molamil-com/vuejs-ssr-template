@@ -10,6 +10,16 @@ const serverBundleConfig = {
         libraryTarget: 'commonjs2',
         filename: 'bundle.server.js'
     },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel',
+                include: config.path.root,
+                exclude: /node_modules/
+            },
+        ]
+    },
     target: 'node',
     externals: [nodeExt()],
     devtool: false,
