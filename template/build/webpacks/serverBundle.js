@@ -18,6 +18,14 @@ const serverBundleConfig = {
                 include: config.path.root,
                 exclude: /node_modules/
             },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader: 'url',
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url',
+            },
         ]
     },
     target: 'node',
