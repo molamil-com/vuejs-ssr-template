@@ -48,7 +48,7 @@ function createCompiler(bundle) {
     })
 }
 
-function createMiddlewares(compiler) {
+function addMiddlewares(compiler) {
     return new Promise(resolve => {
         const hotMiddlewares = compiler.compilers.filter(compiler => {
             return compiler.options.target !== 'node'
@@ -105,7 +105,7 @@ function initServer(compiler, middlewares) {
 async function start() {
     const bundle = await createBundle(webpackConfig)
     const compiler = await createCompiler(bundle)
-    const middlewares = await createMiddlewares(compiler)
+    const middlewares = await addMiddlewares(compiler)
 
     await initServer(compiler, middlewares)
 }
