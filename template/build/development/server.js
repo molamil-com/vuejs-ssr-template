@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 import webpackConfig from '../webpack.config'
 
-import appConfig from '../../config/config'
+import config from '../../config/config'
 
 import webpackMiddleware from 'webpack-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
@@ -88,7 +88,7 @@ function initServer(compiler, middlewares) {
                     files: [],
                 }, resolve)
 
-                fs.watch(`${appConfig.path.app}/index.twig`)
+                fs.watch(`${config.path.app}/index.twig`)
 
                 emitter.on('hot', () => bs.reload())
                 bundlingComplete = runServer
