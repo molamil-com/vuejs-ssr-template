@@ -5,9 +5,12 @@ import path from 'path'
 import cp from 'child_process'
 import events from 'events'
 
+import logger from './tools/logger'
+
 let server, emitter
 
-const RUNNING_REGEXP = /The server is running at http:\/\/(.*?)\//
+// put in conf
+const SERVER_READY_MESSAGE = /The server is running at http:\/\/(.*?)\//
 
 const { output } = webpackConfig.node[1]
 const serverPath = path.join(output.path, output.filename)
@@ -15,14 +18,13 @@ const serverPath = path.join(output.path, output.filename)
 function runServer(fs, cb) {
     function onStdOut(data) {
         const time = new Date().toTimeString()
-        const match = data.toString('utf8').match(RUNNING_REGEXP)
+        const match = data.toString('utf8').match(SERVER_READY_MESSAGE)
 
-        process.stdout.write(time.replace(/.*(\d{2}:\d{2}:\d{2}).*/, '[$1] '))
-        process.stdout.write(data)
+        logger.log('info', `${data}`)
 
         if(match) {
             server.stdout.removeListener('data', onStdOut)
-            server.stdout.on('data', x => process.stdout.write(x))
+            server.stdout.on('data', data => logger.log('info', `${data}`))
 
             if(cb) {
                 emitter = new events.EventEmitter()
@@ -52,7 +54,7 @@ function runServer(fs, cb) {
 
 process.on('exit', () => {
     if(server) {
-        server.kill('SIGTERM')
+        process.nextTick(() => server.kill('SIGTERM'))
     }
 })
 
