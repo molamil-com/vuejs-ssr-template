@@ -30,12 +30,6 @@ const baseConfig = {
                 loader: 'vue',
             },
             {
-                test: /\.js$/,
-                loader: 'babel',
-                include: config.path.root,
-                exclude: /node_modules/
-            },
-            {
                 test: /\.json$/,
                 loader: 'json'
             },
