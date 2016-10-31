@@ -1,15 +1,15 @@
-function format(time) {
-    return time.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1')
-}
-
 function run(task, options) {
+    const logger = require('./logger')
     const start = new Date()
-    console.log(`[${format(start)}] Starting '${task.name}'...`)
+
+    logger.log('info', `starting '${task.name}'...`)
+
     return task(options).then(() => {
         const end = new Date()
         const time = end.getTime() - start.getTime()
-        console.log(`[${format(end)}] Finished '${task.name}' after ${time} ms`)
-    });
+
+        logger.log('info', `finished '${task.name}' after ${time} ms`)
+    })
 }
 
 if(process.mainModule.children.length === 0 && process.argv.length > 2) {
