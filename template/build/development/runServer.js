@@ -1,8 +1,8 @@
 import webpackConfig from '../webpack.config.js'
-import config     from '../../config/config'
+import config from '../../config/config'
 
 import path from 'path'
-import cp   from 'child_process'
+import cp from 'child_process'
 import events from 'events'
 
 let server, emitter

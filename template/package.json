@@ -23,7 +23,8 @@
     "vue-router": "^2.0.0",
     "vue-server-renderer": "^2.0.1",
     "vuex": "^2.0.0",
-    "vuex-router-sync": "^3.0.0"
+    "vuex-router-sync": "^3.0.0",
+    "winston": "^2.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
@@ -62,7 +63,6 @@
     "webpack-hot-middleware": "^2.13.0",
     "webpack-merge": "^0.14.1",
     "webpack-middleware": "git+https://git@github.com/molamil-com/webpack-middleware.git#temp-mem-fs",
-    "webpack-node-externals": "^1.5.4",
-    "winston": "^2.2.0"
+    "webpack-node-externals": "^1.5.4"
   }
 }

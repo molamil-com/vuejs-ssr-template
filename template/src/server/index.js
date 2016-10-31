@@ -24,7 +24,6 @@ const bundleRenderer = vueServerRenderer.createBundleRenderer(serverBundle)
 // server.use(favicon(__dirname + '/app/favicon.ico'));
 server.use(express.static(`${__dirname}/app`))
 
-// look into handling this with a promise...
 server.get('*', (req, res) => {
     const context = { url: req.url }
 
