@@ -13,12 +13,10 @@ const serverBundleConfig = {
     module: {
         rules: [
             {
-                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                loader: 'url',
-            },
-            {
-                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url',
+                test: /\.js$/,
+                loader: 'babel',
+                include: config.path.root,
+                exclude: /node_modules/
             },
         ]
     },

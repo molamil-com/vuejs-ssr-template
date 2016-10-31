@@ -1,12 +1,13 @@
-import path from 'path'
-import cp   from 'child_process'
-
 import webpackConfig from '../webpack.config.js'
 import config     from '../../config/config'
 
-const RUNNING_REGEXP = /The server is running at http:\/\/(.*?)\//
+import path from 'path'
+import cp   from 'child_process'
+import events from 'events'
 
-let server
+let server, emitter
+
+const RUNNING_REGEXP = /The server is running at http:\/\/(.*?)\//
 
 const { output } = webpackConfig.node[1]
 const serverPath = path.join(output.path, output.filename)
@@ -22,8 +23,12 @@ function runServer(fs, cb) {
         if(match) {
             server.stdout.removeListener('data', onStdOut)
             server.stdout.on('data', x => process.stdout.write(x))
+
             if(cb) {
-                cb(null, match[1])
+                emitter = new events.EventEmitter()
+                cb(null, match[1], emitter)
+            } else {
+                if(fs.hot()) emitter.emit('hot')
             }
         }
     }

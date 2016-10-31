@@ -76,19 +76,21 @@ function initServer(compiler, middlewares) {
     return new Promise((resolve) => {
         let bundlingComplete = (fs) => {
 
-            runServer(fs, (err, host) => {
+            runServer(fs, (err, host, emitter) => {
                 if (err) throw err
 
                 const bs = BrowserSync.create()
-
                 bs.init({
                     proxy: {
                         middleware: [wpMiddleware, ...hotMiddlewares],
                         target: host,
                     },
-                    //files: ['./**/*.*'],
+                    files: [],
                 }, resolve)
 
+                fs.watch(`${appConfig.path.app}/index.twig`)
+
+                emitter.on('hot', () => bs.reload())
                 bundlingComplete = runServer
             })
         }
