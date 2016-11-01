@@ -9,7 +9,6 @@ import logger from './tools/logger'
 
 let server, emitter
 
-// put in conf
 const SERVER_READY_MESSAGE = /The server is running at http:\/\/(.*?)\//
 
 const { output } = webpackConfig.node[1]
