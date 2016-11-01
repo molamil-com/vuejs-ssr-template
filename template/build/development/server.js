@@ -1,20 +1,18 @@
 import webpack from 'webpack'
 import webpackConfig from '../webpack.config'
 
-import config from '../../config/config'
-
 import webpackMiddleware from 'webpack-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 
-import BrowserSync from 'browser-sync'
-
-import runServer from './runServer'
-
-import ProgressBarPlugin from 'progress-bar-webpack-plugin'
+import fs from 'memory-fs'
+import path from 'path'
 import chalk from 'chalk';
 
-import path from 'path'
-const resolve = file => path.resolve(__dirname, file)
+import BrowserSync from 'browser-sync'
+import ProgressBarPlugin from 'progress-bar-webpack-plugin'
+
+import config from '../../config/config'
+import runServer from './runServer'
 
 // put these into a module....
 function createBundle(webpacks) {
@@ -38,6 +36,10 @@ function createBundle(webpacks) {
 function createCompiler(bundle) {
     return new Promise(resolve => {
         const compiler = webpack(bundle)
+
+        compiler.compilers.filter(compiler => {
+            return compiler.options.target !== 'node'
+        }).map(compiler => compiler.outputFileSystem = fs)
 
         compiler.apply(new ProgressBarPlugin({
             format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
@@ -103,6 +105,7 @@ function initServer(compiler, middlewares) {
 }
 
 async function start() {
+    // there is no particular reason that these are async. just good habit.
     const bundle = await createBundle(webpackConfig)
     const compiler = await createCompiler(bundle)
     const middlewares = await addMiddlewares(compiler)
