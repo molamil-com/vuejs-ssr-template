@@ -24,7 +24,10 @@ const config = {
         dist: join(__dirname, '..', '/dist'),
         app: join(__dirname, '..', '/dist/app'),
         static: join(__dirname, '..', '/dist/app-static')
-    }
+    },
+    routes: {
+        static: ['/'],
+    },
 }
 
 export default config

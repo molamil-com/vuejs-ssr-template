@@ -26,7 +26,7 @@ const renderBundleConfig = merge(base, app, {
         }),
         new PrerenderSpaPlugin(
             config.path.static,
-            ['/', '/home']
+            config.routes.static
         )
     ]
 })
