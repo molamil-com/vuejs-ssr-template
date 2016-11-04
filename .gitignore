@@ -1,5 +1,7 @@
 wiki/
 node_modules/
+realized/
+
 .DS_Store
 
 *.log

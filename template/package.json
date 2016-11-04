@@ -8,7 +8,7 @@
     "build": "cross-env NODE_ENV=production babel-node build/build",
     "clean": "rm -rf dist",
     "release": "npm run clean && npm run build",
-    "lint": "cross-env NODE_ENV=production eslint src",
+    "lint": "cross-env NODE_ENV=production eslint build",
     "repl": "babel-node"
   },
   "dependencies": {
