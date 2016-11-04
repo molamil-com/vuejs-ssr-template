@@ -1,3 +1,6 @@
+/* eslint-disable import/first */
+require('es6-promise').polyfill()
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 

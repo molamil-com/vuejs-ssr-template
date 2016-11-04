@@ -65,7 +65,6 @@ const production = {
                         ]
                     ],
                     plugins: [
-                        'add-module-exports',
                         'transform-runtime',
                     ],
                     comments: false
