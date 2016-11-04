@@ -20,9 +20,10 @@ const config = {
     },
     path: {
         root: resolve(__dirname, '..'),
-        src:  join(__dirname, '..', '/src'),
+        src: join(__dirname, '..', '/src'),
         dist: join(__dirname, '..', '/dist'),
-        app:  join(__dirname, '..', '/dist/app')
+        app: join(__dirname, '..', '/dist/app'),
+        static: join(__dirname, '..', '/dist/app-static')
     }
 }
 
