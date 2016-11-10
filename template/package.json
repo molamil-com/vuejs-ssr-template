@@ -23,6 +23,7 @@
     "serve-favicon": "^2.3.0",
     "twig": "^0.9.5",
     "vue": "^2.0.1",
+    "vue-head": "^2.0.10",
     "vue-router": "^2.0.0",
     "vue-server-renderer": "^2.0.1",
     "vuex": "^2.0.0",
