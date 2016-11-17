@@ -1,29 +1,30 @@
 import webpack from 'webpack'
+
 import config from '../../config/config'
 
 const baseConfig = {
     resolve: {
-        extensions: ['.js', '.json', '.vue', '.css' ],
+        extensions: ['.js', '.json', '.vue', '.css'],
         modules: ['src', 'node_modules'],
         alias: {
-            'vue$': 'vue/dist/vue.js',
-        }
+            vue$: 'vue/dist/vue.js',
+        },
     },
     module: {
         rules: [
             {
-                enforce: "pre",
+                enforce: 'pre',
                 test: /\.vue$/,
                 loader: 'eslint-loader',
                 include: config.path.src,
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
-                enforce: "pre",
+                enforce: 'pre',
                 test: /\.js$/,
                 loader: 'eslint-loader',
                 include: config.path.src,
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.vue$/,
@@ -31,13 +32,13 @@ const baseConfig = {
             },
             {
                 test: /\.json$/,
-                loader: 'json-loader'
+                loader: 'json-loader',
             },
-        ]
+        ],
     },
     plugins: [
         // new webpack.NoErrorsPlugin(),
-    ]
+    ],
 }
 
 export default baseConfig

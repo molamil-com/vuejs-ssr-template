@@ -1,23 +1,24 @@
 import path from 'path'
 
 import webpack from 'webpack'
-import merge   from 'webpack-merge'
-import config  from '../../config/config'
+import merge from 'webpack-merge'
 
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
+import config from '../../config/config'
+
 const postcss = [
     require('precss')(),
-    require('autoprefixer')({ browsers: ['last 3 versions'] })
+    require('autoprefixer')({ browsers: ['last 3 versions'] }),
 ]
 
 const development = {
     output: {
-        path:          config.path.app,
-        publicPath:    '/',
-        filename:      'js/[name].js',
-        chunkFilename: 'js/[id].js'
+        path: config.path.app,
+        publicPath: '/',
+        filename: 'js/[name].js',
+        chunkFilename: 'js/[id].js',
     },
     module: {
         rules: [
@@ -25,26 +26,26 @@ const development = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 include: config.path.root,
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
-        ]
+        ],
     },
     plugins: [
         new ExtractTextPlugin('css/[name].css'),
         new HtmlWebpackPlugin({
             filename: 'index.twig',
-            template: config.path.src + '/templates/index.twig',
+            template: `${config.path.src}/templates/index.twig`,
             inject: true,
-            chunksSortMode: 'dependency'
-        })
-    ]
+            chunksSortMode: 'dependency',
+        }),
+    ],
 }
 
 const production = {
     output: {
-        path:          config.path.app,
-        filename:      'js/[name].[chunkhash].js',
-        chunkFilename: 'js/[id].[chunkhash].js'
+        path: config.path.app,
+        filename: 'js/[name].[chunkhash].js',
+        chunkFilename: 'js/[id].[chunkhash].js',
     },
     module: {
         rules: [
@@ -57,22 +58,22 @@ const production = {
                         [
                             'es2015',
                             {
-                                modules: false
-                            }
+                                modules: false,
+                            },
                         ],
                         [
-                            'stage-2'
-                        ]
+                            'stage-2',
+                        ],
                     ],
                     plugins: [
                         'transform-runtime',
                     ],
-                    comments: false
+                    comments: false,
                 },
                 include: config.path.root,
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
-        ]
+        ],
     },
     plugins: [
         new webpack.LoaderOptionsPlugin({
@@ -80,51 +81,49 @@ const production = {
                 loaders: {
                     css: ExtractTextPlugin.extract({
                         loader: 'css-loader',
-                        fallbackLoader: 'vue-style-loader'
-                    })
+                        fallbackLoader: 'vue-style-loader',
+                    }),
                 },
-                postcss: postcss
-            }
+                postcss,
+            },
         }),
         new ExtractTextPlugin('css/[name].[contenthash].css'),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
-                warnings: false
-            }
+                warnings: false,
+            },
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
-            minChunks: (module, count) => {
-                return (
+            minChunks: (module, count) => (
                     module.resource &&
                         /\.js$/.test(module.resource) &&
                         module.resource.indexOf(
                             path.join(config.path.root, './node_modules')
                         ) === 0
-                )
-            }
+                ),
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name:   'manifest',
-            chunks: ['vendor']
+            name: 'manifest',
+            chunks: ['vendor'],
         }),
         new HtmlWebpackPlugin({
             filename: 'index.twig',
-            template: config.path.src + '/templates/index.twig',
+            template: `${config.path.src}/templates/index.twig`,
             inject: true,
             minify: {
                 removeComments: true,
                 collapseWhitespace: true,
-                removeAttributeQuotes: false
+                removeAttributeQuotes: false,
             },
-            chunksSortMode: 'dependency'
-        })
-    ]
+            chunksSortMode: 'dependency',
+        }),
+    ],
 }
 
 const clientBundleConfig = merge({
     entry: {
-        app: config.path.src + '/entrypoints/client.js'
+        app: `${config.path.src}/entrypoints/client.js`,
     },
     module: {
         rules: [
@@ -133,21 +132,21 @@ const clientBundleConfig = merge({
                 loader: 'url-loader',
                 query: {
                     limit: 10000,
-                    name: 'img/[name].[hash:7].[ext]'
-                }
+                    name: 'img/[name].[hash:7].[ext]',
+                },
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 loader: 'url-loader',
                 query: {
                     limit: 10000,
-                    name: 'fonts/[name].[hash:7].[ext]'
-                }
+                    name: 'fonts/[name].[hash:7].[ext]',
+                },
             },
-        ]
+        ],
     },
     plugins: [
-    ]
+    ],
 }, process.env.NODE_ENV === 'production' ? production : development)
 
 export default clientBundleConfig

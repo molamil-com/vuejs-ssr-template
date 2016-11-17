@@ -1,10 +1,10 @@
 import webpack from 'webpack'
-import config  from '../../config/config'
-
 import nodeExt from 'webpack-node-externals'
 
+import config from '../../config/config'
+
 const serverConfig = {
-    entry: [config.path.src + '/server/index.js'],
+    entry: [`${config.path.src}/server/index.js`],
     output: {
         path: config.path.dist,
         filename: 'server.js',
@@ -16,9 +16,9 @@ const serverConfig = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 include: config.path.root,
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
-        ]
+        ],
     },
     target: 'node',
     node: {
@@ -31,10 +31,10 @@ const serverConfig = {
     },
     devtool: 'source-map',
     externals: [
-        nodeExt()
+        nodeExt(),
     ],
     plugins: [
-    ]
+    ],
 }
 
 export default serverConfig
