@@ -1,5 +1,3 @@
-import webpack from 'webpack'
-
 import config from '../../config/config'
 
 const baseConfig = {
