@@ -5,8 +5,7 @@ import webpackMiddleware from 'webpack-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 
 import fs from 'memory-fs'
-import path from 'path'
-import chalk from 'chalk';
+import chalk from 'chalk'
 
 import BrowserSync from 'browser-sync'
 import ProgressBarPlugin from 'progress-bar-webpack-plugin'
@@ -16,9 +15,8 @@ import runServer from './runServer'
 
 // put these into a module....
 function createBundle(webpacks) {
-    return new Promise(resolve => {
-
-        const browsers = webpacks.browsers.map(pack => {
+    return new Promise((resolve) => {
+        const browsers = webpacks.browsers.map((pack) => {
             // create new pack instead of mutating...currently only returning non-node.
             // or just mutate and return original pack-array....
             pack.entry = ['webpack-hot-middleware/client', pack.entry.app]
@@ -34,16 +32,14 @@ function createBundle(webpacks) {
 }
 
 function createCompiler(bundle) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         const compiler = webpack(bundle)
 
-        compiler.compilers.filter(compiler => {
-            return compiler.options.target !== 'node'
-        }).map(compiler => compiler.outputFileSystem = fs)
+        compiler.compilers.filter((compiler) => compiler.options.target !== 'node').map(compiler => compiler.outputFileSystem = fs)
 
         compiler.apply(new ProgressBarPlugin({
-            format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)',
-            clear: true
+            format: `  build [:bar] ${  chalk.green.bold(':percent')  } (:elapsed seconds)`,
+            clear: true,
         }))
 
         resolve(compiler)
@@ -51,23 +47,21 @@ function createCompiler(bundle) {
 }
 
 function addMiddlewares(compiler) {
-    return new Promise(resolve => {
-        const hotMiddlewares = compiler.compilers.filter(compiler => {
-            return compiler.options.target !== 'node'
-        }).map(compiler => webpackHotMiddleware(compiler))
+    return new Promise((resolve) => {
+        const hotMiddlewares = compiler.compilers.filter((compiler) => compiler.options.target !== 'node').map(compiler => webpackHotMiddleware(compiler))
 
         // put in config and use also in build.js
         const wpMiddleware = webpackMiddleware(compiler, {
             publicPath: '/',
             index: 'index.twig',
             stats: {
-                colors:       true,
-                modules:      false,
-                children:     true,
-                chunks:       false,
-                chunkModules: false
+                colors: true,
+                modules: false,
+                children: true,
+                chunks: false,
+                chunkModules: false,
             },
-            serverSideRender: true
+            serverSideRender: true,
         })
 
         resolve([hotMiddlewares, wpMiddleware])
@@ -76,8 +70,10 @@ function addMiddlewares(compiler) {
 
 function initServer(compiler, middlewares) {
     return new Promise((resolve) => {
-        let bundlingComplete = (fs) => {
+        const [hotMiddlewares, wpMiddleware] = middlewares
+        const fs = wpMiddleware.fileSystem
 
+        let bundlingComplete = (fs) => {
             runServer(fs, (err, host, emitter) => {
                 if (err) throw err
 
@@ -96,9 +92,6 @@ function initServer(compiler, middlewares) {
                 bundlingComplete = runServer
             })
         }
-
-        const [hotMiddlewares, wpMiddleware] = middlewares
-        const fs = wpMiddleware.fileSystem
 
         compiler.plugin('done', () => bundlingComplete(fs))
     })
