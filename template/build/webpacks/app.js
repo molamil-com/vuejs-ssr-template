@@ -147,7 +147,6 @@ const clientBundleConfig = merge({
         ]
     },
     plugins: [
-        new webpack.optimize.OccurrenceOrderPlugin()
     ]
 }, process.env.NODE_ENV === 'production' ? production : development)
 
