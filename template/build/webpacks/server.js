@@ -14,7 +14,7 @@ const serverConfig = {
         rules: [
             {
                 test: /\.js$/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 include: config.path.root,
                 exclude: /node_modules/
             },

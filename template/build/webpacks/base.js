@@ -14,24 +14,24 @@ const baseConfig = {
             {
                 enforce: "pre",
                 test: /\.vue$/,
-                loader: 'eslint',
+                loader: 'eslint-loader',
                 include: config.path.src,
                 exclude: /node_modules/
             },
             {
                 enforce: "pre",
                 test: /\.js$/,
-                loader: 'eslint',
+                loader: 'eslint-loader',
                 include: config.path.src,
                 exclude: /node_modules/
             },
             {
                 test: /\.vue$/,
-                loader: 'vue',
+                loader: 'vue-loader',
             },
             {
                 test: /\.json$/,
-                loader: 'json'
+                loader: 'json-loader'
             },
         ]
     },

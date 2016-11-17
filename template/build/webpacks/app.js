@@ -23,7 +23,7 @@ const development = {
         rules: [
             {
                 test: /\.js$/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 include: config.path.root,
                 exclude: /node_modules/
             },
@@ -50,7 +50,7 @@ const production = {
         rules: [
             {
                 test: /\.js$/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 query: {
                     babelrc: false,
                     presets: [
@@ -79,8 +79,8 @@ const production = {
             vue: {
                 loaders: {
                     css: ExtractTextPlugin.extract({
-                        loader: 'css',
-                        fallbackLoader: 'vue-style'
+                        loader: 'css-loader',
+                        fallbackLoader: 'vue-style-loader'
                     })
                 },
                 postcss: postcss
@@ -130,7 +130,7 @@ const clientBundleConfig = merge({
         rules: [
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                loader: 'url',
+                loader: 'url-loader',
                 query: {
                     limit: 10000,
                     name: 'img/[name].[hash:7].[ext]'
@@ -138,7 +138,7 @@ const clientBundleConfig = merge({
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url',
+                loader: 'url-loader',
                 query: {
                     limit: 10000,
                     name: 'fonts/[name].[hash:7].[ext]'

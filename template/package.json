@@ -67,7 +67,7 @@
     "url-loader": "^0.5.7",
     "vue-loader": "^9.7.0",
     "vue-style-loader": "^1.0.0",
-    "webpack": "2.1.0-beta.25",
+    "webpack": "2.1.0-beta.27",
     "webpack-hot-middleware": "^2.13.0",
     "webpack-merge": "^0.14.1",
     "webpack-middleware": "git+https://git@github.com/molamil-com/webpack-middleware.git#temp-mem-fs",

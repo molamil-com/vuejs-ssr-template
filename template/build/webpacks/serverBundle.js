@@ -14,17 +14,17 @@ const serverBundleConfig = {
         rules: [
             {
                 test: /\.js$/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 include: config.path.root,
                 exclude: /node_modules/
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                loader: 'url',
+                loader: 'url-loader',
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url',
+                loader: 'url-loader',
             },
         ]
     },
