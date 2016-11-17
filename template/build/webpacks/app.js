@@ -20,6 +20,7 @@ const development = {
         filename: 'js/[name].js',
         chunkFilename: 'js/[id].js',
     },
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -32,6 +33,16 @@ const development = {
     },
     plugins: [
         new ExtractTextPlugin('css/[name].css'),
+        new webpack.LoaderOptionsPlugin({
+            vue: {
+                loaders: {
+                    css: ExtractTextPlugin.extract({
+                        loader: 'css-loader',
+                        fallbackLoader: 'vue-style-loader',
+                    }),
+                },
+            },
+        }),
         new HtmlWebpackPlugin({
             filename: 'index.twig',
             template: `${config.path.src}/templates/index.twig`,
@@ -47,6 +58,7 @@ const production = {
         filename: 'js/[name].[chunkhash].js',
         chunkFilename: 'js/[id].[chunkhash].js',
     },
+    devtool: false,
     module: {
         rules: [
             {
@@ -76,6 +88,7 @@ const production = {
         ],
     },
     plugins: [
+        new ExtractTextPlugin('css/[name].[contenthash].css'),
         new webpack.LoaderOptionsPlugin({
             vue: {
                 loaders: {
@@ -87,7 +100,6 @@ const production = {
                 postcss,
             },
         }),
-        new ExtractTextPlugin('css/[name].[contenthash].css'),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false,

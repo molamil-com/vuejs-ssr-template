@@ -10,6 +10,7 @@ const serverConfig = {
         filename: 'server.js',
         libraryTarget: 'commonjs2',
     },
+    devtool: false,
     module: {
         rules: [
             {
@@ -29,7 +30,6 @@ const serverConfig = {
         __filename: false,
         __dirname: false,
     },
-    devtool: 'source-map',
     externals: [
         nodeExt(),
     ],

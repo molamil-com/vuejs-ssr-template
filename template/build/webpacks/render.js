@@ -12,6 +12,7 @@ const renderBundleConfig = merge(base, app, {
         filename: 'js/[name].[chunkhash].js',
         chunkFilename: 'js/[id].[chunkhash].js',
     },
+    devtool: false,
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',

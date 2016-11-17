@@ -10,6 +10,7 @@ const serverBundleConfig = {
         libraryTarget: 'commonjs2',
         filename: 'bundle.server.js',
     },
+    devtool: false,
     module: {
         rules: [
             {
@@ -30,7 +31,6 @@ const serverBundleConfig = {
     },
     target: 'node',
     externals: [nodeExt()],
-    devtool: false,
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
