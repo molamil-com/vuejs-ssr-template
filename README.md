@@ -19,4 +19,9 @@ $ npm run release
 
 will build a dist folder.
 
+## CREDIT & REFERENCES ##
 
+* https://github.com/vuejs/vue
+* https://github.com/webpack/webpack
+* https://github.com/vuejs/vue-hackernews-2.0
+* https://github.com/LucasIcarus/Vuepack-SSR

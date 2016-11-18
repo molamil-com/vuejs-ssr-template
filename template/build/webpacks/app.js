@@ -108,12 +108,12 @@ const production = {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks: (module, count) => (
-                    module.resource &&
-                        /\.js$/.test(module.resource) &&
-                        module.resource.indexOf(
-                            path.join(config.path.root, './node_modules')
-                        ) === 0
-                ),
+                module.resource &&
+                    /\.js$/.test(module.resource) &&
+                    module.resource.indexOf(
+                        path.join(config.path.root, './node_modules')
+                    ) === 0
+            ),
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'manifest',
