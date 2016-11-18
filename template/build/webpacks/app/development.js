@@ -45,5 +45,8 @@ export default {
             inject: true,
             chunksSortMode: 'dependency',
         }),
+        new webpack.optimize.UglifyJsPlugin({
+            beautify: true
+        }),
     ],
 }
