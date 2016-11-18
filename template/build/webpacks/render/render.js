@@ -1,4 +1,6 @@
+import webpack from 'webpack'
 import merge from 'webpack-merge'
+
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import PrerenderSpaPlugin from 'prerender-spa-plugin'
 
@@ -14,6 +16,9 @@ const renderBundleConfig = merge(base, app, {
     },
     devtool: false,
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production'),
+        }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: `${config.path.src}/templates/index.html`,

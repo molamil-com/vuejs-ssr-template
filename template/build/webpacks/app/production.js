@@ -47,6 +47,10 @@ export default {
         ],
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production'),
+            'process.env.VUE_ENV': '"client"'
+        }),
         new ExtractTextPlugin('css/[name].[contenthash].css'),
         new webpack.LoaderOptionsPlugin({
             vue: {
@@ -58,6 +62,8 @@ export default {
                 },
                 postcss,
             },
+            minimize: true,
+            debug: false,
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
@@ -67,12 +73,12 @@ export default {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks: (module, count) => (
-                    module.resource &&
-                        /\.js$/.test(module.resource) &&
-                        module.resource.indexOf(
-                            path.join(config.path.root, './node_modules')
-                        ) === 0
-                ),
+                module.resource &&
+                    /\.js$/.test(module.resource) &&
+                    module.resource.indexOf(
+                        path.join(config.path.root, './node_modules')
+                    ) === 0
+            ),
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'manifest',
@@ -84,7 +90,7 @@ export default {
             inject: true,
             minify: {
                 removeComments: true,
-                collapseWhitespace: true,
+                collapseWhitespace: false,
                 removeAttributeQuotes: false,
             },
             chunksSortMode: 'dependency',

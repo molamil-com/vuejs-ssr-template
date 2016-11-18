@@ -5,7 +5,7 @@ const baseConfig = {
         extensions: ['.js', '.json', '.vue', '.css'],
         modules: ['src', 'node_modules'],
         alias: {
-            vue$: 'vue/dist/vue.js',
+            vue$: process.env.NODE_ENV === 'production' ? 'vue/dist/vue.min.js'  : 'vue/dist/vue.js',
         },
     },
     module: {
