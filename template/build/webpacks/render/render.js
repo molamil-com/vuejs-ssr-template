@@ -2,9 +2,9 @@ import merge from 'webpack-merge'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import PrerenderSpaPlugin from 'prerender-spa-plugin'
 
-import config from '../../config/config'
-import base from './base.js'
-import app from './app.js'
+import config from '../../../config/config'
+import base from '../base.js'
+import app from '../app/app.js'
 
 const renderBundleConfig = merge(base, app, {
     output: {
