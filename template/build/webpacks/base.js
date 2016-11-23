@@ -1,3 +1,4 @@
+import webpack from 'webpack'
 import config from '../../config/config'
 
 const baseConfig = {
@@ -35,6 +36,9 @@ const baseConfig = {
         ],
     },
     plugins: [
+        new webpack.ProvidePlugin({
+            debug: 'debug',
+        }),
         // new webpack.NoErrorsPlugin(),
     ],
 }

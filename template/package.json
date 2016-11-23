@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "{{ author }}",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development babel-node build/development/tools/run ../server",
+    "dev": "cross-env NODE_ENV=development DEBUG=app:* babel-node build/development/tools/run ../server",
     "build": "cross-env NODE_ENV=production babel-node build/build",
     "clean": "rm -rf dist",
     "release": "npm run clean && npm run build",
