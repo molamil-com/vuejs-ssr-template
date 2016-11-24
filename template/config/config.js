@@ -28,6 +28,9 @@ const config = {
     routes: {
         static: ['/'],
     },
+    externals: {
+        whitelist: ['vue-slick',],
+    }
 }
 
 export default config
