@@ -7,6 +7,9 @@
         "browser": true,
         "node": true
     },
+    "globals": {
+        "debug": true
+    },
     "extends": "airbnb-base",
     "rules": {
         "semi": ["error", "never"],
