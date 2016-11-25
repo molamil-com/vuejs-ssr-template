@@ -28,8 +28,8 @@ const config = {
     routes: {
         static: ['/'],
     },
-    externals: {
-        whitelist: ['vue-slick',],
+    modules: {
+        browser: ['vue-slick']
     }
 }
 

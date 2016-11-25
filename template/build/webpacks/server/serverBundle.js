@@ -20,6 +20,10 @@ const serverBundleConfig = {
                 exclude: /node_modules/,
             },
             {
+                test: /vue-slick[\\\/].*\.vue$/,
+                loader: config.path.root + '/build/development/tools/blockLoader'
+            },
+            {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
             },
@@ -31,7 +35,7 @@ const serverBundleConfig = {
     },
     target: 'node',
     externals: [nodeExt({
-        whitelist: config.externals.whitelist
+        whitelist: config.modules.browser
     })],
     plugins: [
         new webpack.DefinePlugin({
