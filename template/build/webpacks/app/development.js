@@ -28,17 +28,6 @@ export default {
             'process.env.NODE_ENV': JSON.stringify('development'),
             'process.env.VUE_ENV': '"client"'
         }),
-        new ExtractTextPlugin('css/[name].css'),
-        new webpack.LoaderOptionsPlugin({
-            vue: {
-                loaders: {
-                    css: ExtractTextPlugin.extract({
-                        loader: 'css-loader',
-                        fallbackLoader: 'vue-style-loader',
-                    }),
-                },
-            },
-        }),
         new HtmlWebpackPlugin({
             filename: 'index.twig',
             template: `${config.path.src}/templates/index.twig`,
