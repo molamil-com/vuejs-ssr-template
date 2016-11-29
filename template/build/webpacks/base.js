@@ -29,6 +29,10 @@ const baseConfig = {
                 loader: 'vue-loader',
             },
             {
+                test: /\.scss$/,
+                loader: 'vue-style-loader!css-loader!sass-loader!',
+            },
+            {
                 test: /\.json$/,
                 loader: 'json-loader',
             },
