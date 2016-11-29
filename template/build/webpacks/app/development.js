@@ -28,6 +28,14 @@ export default {
             'process.env.NODE_ENV': JSON.stringify('development'),
             'process.env.VUE_ENV': '"client"'
         }),
+        new webpack.LoaderOptionsPlugin({
+            vue: {
+                loaders: {
+                    css: 'vue-style-loader!css-loader',
+                    scss: 'vue-style-loader!css-loader!sass-loader',
+                },
+            },
+        }),
         new HtmlWebpackPlugin({
             filename: 'index.twig',
             template: `${config.path.src}/templates/index.twig`,
