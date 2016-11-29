@@ -28,14 +28,11 @@ export default {
             'process.env.NODE_ENV': JSON.stringify('development'),
             'process.env.VUE_ENV': '"client"'
         }),
-        new ExtractTextPlugin('css/[name].css'),
         new webpack.LoaderOptionsPlugin({
             vue: {
                 loaders: {
-                    css: ExtractTextPlugin.extract({
-                        loader: 'css-loader',
-                        fallbackLoader: 'vue-style-loader',
-                    }),
+                    css: 'vue-style-loader!css-loader',
+                    scss: 'vue-style-loader!css-loader!sass-loader',
                 },
             },
         }),

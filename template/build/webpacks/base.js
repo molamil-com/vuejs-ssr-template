@@ -3,7 +3,7 @@ import config from '../../config/config'
 
 const baseConfig = {
     resolve: {
-        extensions: ['.js', '.json', '.vue', '.css'],
+        extensions: ['.js', '.json', '.vue', '.css', '.scss'],
         modules: ['src', 'node_modules'],
         alias: {
             vue$: process.env.NODE_ENV === 'production' ? 'vue/dist/vue.min.js'  : 'vue/dist/vue.js',
@@ -28,6 +28,10 @@ const baseConfig = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
+            },
+            {
+                test: /\.scss$/,
+                loader: 'vue-style-loader!css-loader!sass-loader!',
             },
             {
                 test: /\.json$/,
