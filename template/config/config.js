@@ -29,7 +29,10 @@ const config = {
         static: ['/'],
     },
     modules: {
-        browser: ['vue-slick']
+        browser: ['gsap', 'pasg'],
+        server: {
+            white: []
+        }
     }
 }
 
