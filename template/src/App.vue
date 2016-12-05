@@ -1,15 +1,20 @@
 <template>
     <div id="app">
-        <img class="logo" src="./assets/images/logo.png">
+        <img class="logo" src="./assets/images/logo.png" ref="logo">
         <router-view></router-view>
     </div>
 </template>
 
 <script>
+    import { TweenLite } from 'gsap'
+
     export default {
         name: 'app',
         data() {
             return { }
+        },
+        mounted() {
+            TweenLite.to(this.$refs.logo, 2, { y: 50 })
         },
     }
 </script>
