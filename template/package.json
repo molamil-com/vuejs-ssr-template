@@ -17,6 +17,7 @@
   "dependencies": {
     "es6-promise": "^4.0.5",
     "express": "^4.14.0",
+    "gsap": "^1.19.0",
     "lodash": "^4.16.4",
     "node-twig": "^1.1.0",
     "serialize-javascript": "^1.3.0",
@@ -38,7 +39,6 @@
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-stage-2": "^6.17.0",
-    "block-loader": "^2.1.0",
     "browser-sync": "^2.17.3",
     "chalk": "^1.1.3",
     "copy-webpack-plugin": "^3.0.1",
@@ -65,14 +65,15 @@
     {{/prerender}}
     "progress-bar-webpack-plugin": "^1.9.0",
     "sass-loader": "^4.0.2",
+    "string-replace-loader": "^1.0.5",
     "url-loader": "^0.5.7",
     "vue-loader": "^9.7.0",
     "vue-style-loader": "^1.0.0",
     "webpack": "2.1.0-beta.27",
+    "webpack-combine-loaders": "^2.0.3",
     "webpack-hot-middleware": "^2.13.0",
     "webpack-merge": "^0.14.1",
     "webpack-middleware": "git+https://git@github.com/molamil-com/webpack-middleware.git#temp-mem-fs",
-    "webpack-node-externals": "^1.5.4",
-    "window-or-global": "^1.0.1"
+    "webpack-node-externals": "^1.5.4"
   }
 }
