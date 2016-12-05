@@ -41,7 +41,6 @@ const baseConfig = {
     },
     plugins: [
         new webpack.ProvidePlugin({
-            window: 'window-or-global',
             debug: 'debug',
         }),
     ],
