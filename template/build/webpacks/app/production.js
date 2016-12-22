@@ -56,12 +56,10 @@ export default {
             vue: {
                 loaders: {
                     css: ExtractTextPlugin.extract({
-                        loader: 'css-loader',
-                        fallbackLoader: 'vue-style-loader',
+                        loader: 'vue-style-loader!css-loader'
                     }),
                     scss: ExtractTextPlugin.extract({
-                        loader: 'css-loader!sass-loader',
-                        fallbackLoader: 'vue-style-loader',
+                        loader: 'vue-style-loader!css-loader!sass-loader'
                     }),
                 },
                 postcss,
@@ -73,20 +71,6 @@ export default {
             compress: {
                 warnings: false,
             },
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            minChunks: (module, count) => (
-                module.resource &&
-                    /\.js$/.test(module.resource) &&
-                    module.resource.indexOf(
-                        path.join(config.path.root, './node_modules')
-                    ) === 0
-            ),
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'manifest',
-            chunks: ['vendor'],
         }),
         new HtmlWebpackPlugin({
             filename: 'index.twig',

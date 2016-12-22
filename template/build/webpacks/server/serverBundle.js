@@ -53,7 +53,8 @@ const serverBundleConfig = {
         new webpack.LoaderOptionsPlugin({
             vue: {
                 loaders: {
-                    js: sLoader
+                    js: sLoader,
+                    babel: sLoader
                 },
             },
         }),
@@ -62,6 +63,7 @@ const serverBundleConfig = {
             'process.env.VUE_ENV': '"server"'
         }),
         new webpack.optimize.UglifyJsPlugin({
+            sourceMap: false,
             beautify: true
         }),
     ],
