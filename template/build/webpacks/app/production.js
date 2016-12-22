@@ -56,10 +56,12 @@ export default {
             vue: {
                 loaders: {
                     css: ExtractTextPlugin.extract({
-                        loader: 'vue-style-loader!css-loader'
+                        loader: 'css-loader',
+                        fallbackLoader: 'vue-style-loader'
                     }),
                     scss: ExtractTextPlugin.extract({
-                        loader: 'vue-style-loader!css-loader!sass-loader'
+                        loader: 'css-loader!sass-loader',
+                        fallbackLoader: 'vue-style-loader'
                     }),
                 },
                 postcss,
