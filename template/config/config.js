@@ -29,7 +29,7 @@ const config = {
         static: ['/'],
     },
     modules: {
-        browser: ['gsap', 'pasg'],
+        browser: ['gsap'],
         server: {
             white: []
         }
