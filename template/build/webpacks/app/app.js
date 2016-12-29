@@ -46,6 +46,9 @@ const clientBundleConfig = merge({
             name: 'manifest',
             chunks: ['vendor'],
         }),
+        new CopyWebpackPlugin([
+            { from: `${config.path.root}/static`, to: `${config.path.app}/static` },
+        ]),
     ],
 }, process.env.NODE_ENV === 'production' ? production : development)
 

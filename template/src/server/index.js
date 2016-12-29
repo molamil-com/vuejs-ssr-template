@@ -6,7 +6,7 @@ import path from 'path'
 import express from 'express'
 import Twig from 'twig'
 import serialize from 'serialize-javascript'
-// import favicon from 'serve-favicon'
+import favicon from 'serve-favicon'
 
 const fs = require('fs')
 const vueServerRenderer = require('vue-server-renderer')
@@ -21,7 +21,7 @@ const serverBundle = fs.readFileSync(serverBundlePath, 'utf8')
 
 const bundleRenderer = vueServerRenderer.createBundleRenderer(serverBundle)
 
-// server.use(favicon(__dirname + '/app/favicon.ico'));
+server.use(favicon(`${__dirname}/app/static/images/favicons/favicon.ico`))
 server.use(express.static(`${__dirname}/app`))
 
 server.get('*', (req, res) => {
