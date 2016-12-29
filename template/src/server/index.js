@@ -21,8 +21,8 @@ const serverBundle = fs.readFileSync(serverBundlePath, 'utf8')
 
 const bundleRenderer = vueServerRenderer.createBundleRenderer(serverBundle)
 
-server.use(favicon(`${__dirname}/app/static/images/favicons/favicon.ico`))
 server.use(express.static(`${__dirname}/app`))
+server.use(favicon('static/images/favicons/favicon.ico'))
 
 server.get('*', (req, res) => {
     const context = { url: req.url }
