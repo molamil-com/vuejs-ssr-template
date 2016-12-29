@@ -1,0 +1,10 @@
+image: node:6.7.0
+
+pipelines:
+  branches:
+    staging:
+      - step:
+          script:
+            - npm install
+            - npm run release
+            - ./build/deploys/heroku/deploy.sh $PWD
