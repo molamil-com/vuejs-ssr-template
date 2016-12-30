@@ -6,12 +6,8 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const defaultState = {
+const state = {
 }
-
-/* eslint-disable no-underscore-dangle, no-undef */
-const inBrowser = typeof window !== 'undefined'
-const state = (inBrowser && window.__INITIAL_STATE__) || defaultState
 
 const mutations = {
 }
