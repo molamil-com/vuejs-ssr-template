@@ -18,12 +18,12 @@ module.exports = {
                 {
                     "name": "Vue Basic",
                     "value": "basic",
-                    "short": "basic",
+                    "short": "Basic",
                 },
                 {
                     "name": "Vue SSR",
                     "value": "ssr",
-                    "short": "ssr",
+                    "short": "SSR",
                 },
             ]
         },
@@ -32,6 +32,12 @@ module.exports = {
             "message": "Enable Webpack prerendering?",
             "default": false,
         },
+    },
+    "filters": {
+        "src/server/**/*": "template == 'ssr'",
+        "src/entrypoints/server.js": "template == 'ssr'",
+        "src/templates/index.twig": "template == 'ssr'",
+        "src/templates/index.html": "template == 'basic'",
     },
     "completeMessage": "Golden!",
 }
