@@ -28,12 +28,14 @@ const config = {
     routes: {
         static: ['/'],
     },
+    {{#if_eq template 'ssr'}}
     modules: {
         browser: ['gsap'],
         server: {
             white: []
         }
-    }
+    },
+    {{/if_eq}}
 }
 
 export default config
