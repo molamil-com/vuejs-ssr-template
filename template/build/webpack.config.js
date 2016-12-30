@@ -5,6 +5,7 @@ import app from './webpacks/app/app.js'
 {{#if_eq template 'ssr'}}
 import server from './webpacks/server/server.js'
 import serverBundle from './webpacks/server/serverBundle.js'
+
 {{/if_eq}}
 const clientBundleConfig = merge(base, app)
 {{#if_eq template 'ssr'}}
