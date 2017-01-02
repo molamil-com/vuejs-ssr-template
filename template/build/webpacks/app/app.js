@@ -48,7 +48,15 @@ const clientBundleConfig = merge({
             chunks: ['vendor'],
         }),
         new CopyWebpackPlugin([
-            { from: `${config.path.root}/static`, to: `${config.path.app}/static` },
+            {
+                from: `${config.path.root}/static`,
+                to: `${config.path.app}/static`,
+                ignore: [ 'favicon.ico', '.gitkeep' ],
+            },
+            {
+                from: `${config.path.root}/static/favicon.ico`,
+                to: `${config.path.app}`,
+            },
         ]),
     ],
 }, process.env.NODE_ENV === 'production' ? production : development)

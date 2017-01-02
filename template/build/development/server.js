@@ -17,7 +17,7 @@ import runServer from './runServer'
 const index = 'index.html'
 {{/if_eq}}
 {{#if_eq template 'ssr'}}
-const index = 'index.twig'$
+const index = 'index.twig'
 {{/if_eq}}
 
 {{#if_eq template 'basic'}}
