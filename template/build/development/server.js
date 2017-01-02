@@ -3,6 +3,7 @@ import webpackConfig from '../webpack.config'
 
 import webpackMiddleware from 'webpack-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
+import historyApiFallback from 'connect-history-api-fallback'
 
 import fs from 'memory-fs'
 import chalk from 'chalk'
@@ -62,6 +63,7 @@ function createCompiler(bundle) {
 
 function addMiddlewares(compiler) {
     return new Promise((resolve) => {
+        const historyFallbackMiddleware = historyApiFallback()
         const hotMiddlewares = compiler.compilers.filter((compiler) => compiler.options.target !== 'node').map(compiler => webpackHotMiddleware(compiler))
 
         // put in config and use also in build.js
@@ -71,20 +73,20 @@ function addMiddlewares(compiler) {
             stats: {
                 colors: true,
                 modules: false,
-                children: true,
+                children: false,
                 chunks: false,
                 chunkModules: false,
             },
             serverSideRender: serverSideRender,
         })
 
-        resolve([hotMiddlewares, wpMiddleware])
+        resolve([hotMiddlewares, wpMiddleware, historyFallbackMiddleware])
     })
 }
 
 function initServer(compiler, middlewares) {
     return new Promise((resolve) => {
-        const [hotMiddlewares, wpMiddleware] = middlewares
+        const [hotMiddlewares, wpMiddleware, historyFallbackMiddleware] = middlewares
         const fs = wpMiddleware.fileSystem
 
         let bundlingComplete = (fs) => {
@@ -94,15 +96,19 @@ function initServer(compiler, middlewares) {
                 const bs = BrowserSync.create()
                 bs.init({
                     proxy: {
-                        middleware: [wpMiddleware, ...hotMiddlewares],
+                        middleware: [historyFallbackMiddleware,
+                                     wpMiddleware,
+                                     historyFallbackMiddleware,
+                                     ...hotMiddlewares],
                         target: host,
                     },
                     files: [],
                 }, resolve)
 
+                // put handling of fs and bs into seperate fun.
                 fs.watch(`${config.path.app}/${index}`)
-
                 emitter.on('hot', () => bs.reload())
+
                 bundlingComplete = runServer
             })
         }
