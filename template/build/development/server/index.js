@@ -8,10 +8,6 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _serveFavicon = require('serve-favicon');
-
-var _serveFavicon2 = _interopRequireDefault(_serveFavicon);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 process.env.VUE_ENV = 'server';
