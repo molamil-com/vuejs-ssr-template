@@ -1,6 +1,7 @@
 wiki/
 node_modules/
 realized/
+realized-ssr/
 
 .DS_Store
 
