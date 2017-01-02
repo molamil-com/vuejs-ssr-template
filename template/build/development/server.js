@@ -13,6 +13,20 @@ import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import config from '../../config/config'
 import runServer from './runServer'
 
+{{#if_eq template 'basic'}}
+const index = 'index.html'
+{{/if_eq}}
+{{#if_eq template 'ssr'}}
+const index = 'index.twig'$
+{{/if_eq}}
+
+{{#if_eq template 'basic'}}
+const serverSideRender = false
+{{/if_eq}}
+{{#if_eq template 'ssr'}}
+const serverSideRender = true
+{{/if_eq}}
+
 // put these into a module....
 function createBundle(webpacks) {
     return new Promise((resolve) => {
@@ -53,7 +67,7 @@ function addMiddlewares(compiler) {
         // put in config and use also in build.js
         const wpMiddleware = webpackMiddleware(compiler, {
             publicPath: '/',
-            index: 'index.twig',
+            index: index,
             stats: {
                 colors: true,
                 modules: false,
@@ -61,7 +75,7 @@ function addMiddlewares(compiler) {
                 chunks: false,
                 chunkModules: false,
             },
-            serverSideRender: true,
+            serverSideRender: serverSideRender,
         })
 
         resolve([hotMiddlewares, wpMiddleware])
@@ -86,7 +100,7 @@ function initServer(compiler, middlewares) {
                     files: [],
                 }, resolve)
 
-                fs.watch(`${config.path.app}/index.twig`)
+                fs.watch(`${config.path.app}/${index}`)
 
                 emitter.on('hot', () => bs.reload())
                 bundlingComplete = runServer

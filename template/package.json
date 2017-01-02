@@ -24,7 +24,9 @@
     {{#if_eq template 'ssr'}}
     "node-twig": "^1.1.0",
     "serialize-javascript": "^1.3.0",
+    {{/if_eq}}
     "serve-favicon": "^2.3.0",
+    {{#if_eq template 'ssr'}}
     "twig": "^0.9.5",
     {{/if_eq}}
     "vue": "^2.1.6",
@@ -56,6 +58,9 @@
     "eslint-loader": "^1.5.0",
     "eslint-plugin-html": "^1.5.3",
     "eslint-plugin-import": "^2.2.0",
+    {{#if_eq template 'basic'}}
+    "express": "^4.14.0",
+    {{/if_eq}}
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9.0",
     "gsap": "^1.19.0",
