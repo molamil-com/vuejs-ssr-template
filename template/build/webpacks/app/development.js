@@ -37,8 +37,14 @@ export default {
             },
         }),
         new HtmlWebpackPlugin({
+            {{#if_eq template 'basic'}}
+            filename: 'index.html',
+            template: `${config.path.src}/templates/index.html`,
+            {{/if_eq}}
+            {{#if_eq template 'ssr'}}
             filename: 'index.twig',
             template: `${config.path.src}/templates/index.twig`,
+            {{/if_eq}}
             inject: true,
             chunksSortMode: 'dependency',
         }),
