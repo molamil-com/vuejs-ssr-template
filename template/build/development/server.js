@@ -3,7 +3,13 @@ import webpackConfig from '../webpack.config'
 
 import webpackMiddleware from 'webpack-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
+
+{{#if_eq template 'ssr'}}
+const historyApiFallback = () => { return (req, res, next) => { next() } }
+{{/if_eq}}
+{{#unless_eq template 'ssr'}}
 import historyApiFallback from 'connect-history-api-fallback'
+{{/unless_eq}}
 
 import fs from 'memory-fs'
 import chalk from 'chalk'
