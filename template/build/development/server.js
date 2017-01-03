@@ -16,15 +16,10 @@ import runServer from './runServer'
 
 {{#if_eq template 'basic'}}
 const index = 'index.html'
-{{/if_eq}}
-{{#if_eq template 'ssr'}}
-const index = 'index.twig'
-{{/if_eq}}
-
-{{#if_eq template 'basic'}}
 const serverSideRender = false
 {{/if_eq}}
 {{#if_eq template 'ssr'}}
+const index = 'index.twig'
 const serverSideRender = true
 {{/if_eq}}
 
@@ -50,7 +45,9 @@ function createCompiler(bundle) {
     return new Promise((resolve) => {
         const compiler = webpack(bundle)
 
-        compiler.compilers.filter((compiler) => compiler.options.target !== 'node').map(compiler => compiler.outputFileSystem = fs)
+        compiler.compilers
+            .filter((compiler) => compiler.options.target !== 'node')
+            .map(compiler => compiler.outputFileSystem = fs)
 
         compiler.apply(new ProgressBarPlugin({
             format: `  build [:bar] ${  chalk.green.bold(':percent')  } (:elapsed seconds)`,
@@ -96,6 +93,7 @@ function initServer(compiler, middlewares) {
                 const bs = BrowserSync.create()
                 bs.init({
                     proxy: {
+                        // create function to add wrap wpiddle in fallback - using a config.
                         middleware: [historyFallbackMiddleware,
                                      wpMiddleware,
                                      historyFallbackMiddleware,
@@ -106,6 +104,7 @@ function initServer(compiler, middlewares) {
                 }, resolve)
 
                 // put handling of fs and bs into seperate fun.
+                // probably no need for custom fs though....
                 fs.watch(`${config.path.app}/${index}`)
                 emitter.on('hot', () => bs.reload())
 
