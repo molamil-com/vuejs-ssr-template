@@ -1,23 +1,8 @@
 import webpack from 'webpack'
 import nodeExt from 'webpack-node-externals'
-import combineLoaders from 'webpack-combine-loaders'
 
+import { VueServerBundleLoader } from '../../loaders/vue-loaders'
 import config from '../../../config/config'
-
-const re = `import.*(${config.modules.browser.map((item) => { return "\\'" + item + "\\'" }).join('|')})`
-const sLoader = combineLoaders([
-    {
-        loader: 'babel-loader',
-    },
-    {
-        loader: 'string-replace-loader',
-        query: {
-            search: re,
-            replace: '/* eslint-disable no-undef */',
-            flags: 'g',
-        }
-    }
-]);
 
 const serverBundleConfig = {
     entry: [`${config.path.src}/entrypoints/server.js`],
@@ -53,8 +38,8 @@ const serverBundleConfig = {
         new webpack.LoaderOptionsPlugin({
             vue: {
                 loaders: {
-                    js: sLoader,
-                    babel: sLoader
+                    js: VueServerBundleLoader,
+                    babel: VueServerBundleLoader
                 },
             },
         }),

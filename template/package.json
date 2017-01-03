@@ -78,16 +78,12 @@
     {{/prerender}}
     "progress-bar-webpack-plugin": "^1.9.0",
     "sass-loader": "^4.0.2",
-    {{#if_eq template 'ssr'}}
     "string-replace-loader": "^1.0.5",
-    {{/if_eq}}
     "url-loader": "^0.5.7",
     "vue-loader": "^9.7.0",
     "vue-style-loader": "^1.0.0",
     "webpack": "2.2.0-rc.3",
-    {{#if_eq template 'ssr'}}
     "webpack-combine-loaders": "^2.0.3",
-    {{/if_eq}}
     "webpack-hot-middleware": "^2.13.0",
     "webpack-merge": "^0.14.1",
     "webpack-middleware": "git+https://git@github.com/molamil-com/webpack-middleware.git#temp-mem-fs"{{#if_eq template 'ssr'}},{{/if_eq}}
