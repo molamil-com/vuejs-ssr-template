@@ -14,6 +14,7 @@
             return { }
         },
         mounted() {
+            debug('app:info')('App mounted!')
             TweenLite.to(this.$refs.logo, 2, { y: 50 })
         },
     }
