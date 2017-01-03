@@ -2,6 +2,7 @@ import webpack from 'webpack'
 import merge from 'webpack-merge'
 
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 import PrerenderSpaPlugin from 'prerender-spa-plugin'
 
 import config from '../../../config/config'
@@ -31,6 +32,17 @@ const renderBundleConfig = merge(base, app, {
             },
             chunksSortMode: 'dependency',
         }),
+        new CopyWebpackPlugin([
+            {
+                from: `${config.path.root}/static`,
+                to: `${config.path.static}/static`,
+                ignore: [ 'favicon.ico', '.gitkeep' ],
+            },
+            {
+                from: `${config.path.root}/static/favicon.ico`,
+                to: `${config.path.static}`,
+            },
+        ]),
         new PrerenderSpaPlugin(
             config.path.static,
             config.routes.static,

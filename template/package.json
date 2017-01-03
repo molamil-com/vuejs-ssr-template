@@ -6,11 +6,16 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development DEBUG=app:* babel-node build/development/tools/run ../server",
     "build": "cross-env NODE_ENV=production babel-node build/build",
-    "clean": "rm -rf dist",
-    "release": "npm run clean && npm run build",
     {{#prerender}}
     "render": "cross-env NODE_ENV=production babel-node build/render",
     {{/prerender}}
+    "clean": "rm -rf dist",
+    {{#prerender}}
+    "release": "npm run clean && npm run build && npm run render",
+    {{/prerender}}
+    {{#unless prerender}}
+    "release": "npm run clean && npm run build",
+    {{/unless}}
     "lint": "cross-env NODE_ENV=production eslint src",
     "repl": "babel-node"
   },
