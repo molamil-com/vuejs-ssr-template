@@ -31,7 +31,7 @@
     "settings": {
         "import/resolver": {
             "webpack": {
-                "config": "build/webpacks/base.js"
+                "config": "build/webpack/base.js"
             }
         }
     }

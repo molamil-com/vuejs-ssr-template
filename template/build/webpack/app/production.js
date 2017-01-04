@@ -4,7 +4,7 @@ import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
-import { VueAppBundleLoader } from '../../loaders/vue-loaders'
+import { VueAppBundleLoader } from '../loaders/vue-loaders'
 import config from '../../../config/config'
 
 const postcss = [

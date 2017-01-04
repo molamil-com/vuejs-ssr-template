@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 import nodeExt from 'webpack-node-externals'
 
-import { VueServerBundleLoader } from '../../loaders/vue-loaders'
+import { VueServerBundleLoader } from '../loaders/vue-loaders'
 import config from '../../../config/config'
 
 const serverBundleConfig = {

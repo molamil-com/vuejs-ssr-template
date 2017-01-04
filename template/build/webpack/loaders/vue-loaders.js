@@ -1,5 +1,5 @@
 import combineLoaders from 'webpack-combine-loaders'
-import config from '../../config/config'
+import config from '../../../config/config'
 
 {{#if_eq template 'ssr'}}
 const re = `import.*(${config.modules.browser.map((item) => { return "\\'" + item + "\\'" }).join('|')})`

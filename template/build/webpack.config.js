@@ -1,10 +1,10 @@
 import merge from 'webpack-merge'
 
-import base from './webpacks/base.js'
-import app from './webpacks/app/app.js'
+import base from './webpack/base.js'
+import app from './webpack/app/app.js'
 {{#if_eq template 'ssr'}}
-import server from './webpacks/server/server.js'
-import serverBundle from './webpacks/server/serverBundle.js'
+import server from './webpack/server/server.js'
+import serverBundle from './webpack/server/serverBundle.js'
 
 {{/if_eq}}
 const clientBundleConfig = merge(base, app)
