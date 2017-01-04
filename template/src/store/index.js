@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const state = {
+const defaultState = {
 }
 
 const mutations = {
@@ -16,7 +16,7 @@ const getters = {
 }
 
 const store = new Vuex.Store({
-    state,
+    state: defaultState,
     getters,
     actions,
     mutations,
