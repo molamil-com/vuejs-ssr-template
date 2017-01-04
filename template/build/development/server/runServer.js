@@ -2,10 +2,10 @@ import path from 'path'
 import cp from 'child_process'
 import events from 'events'
 
-import webpackConfig from '../webpack.config'
-import config from '../../config/config'
+import webpackConfig from '../../webpack.config'
+import config from '../../../config/config'
 
-import logger from './tools/logger'
+import logger from '../tools/logger'
 
 let server,
     emitter
@@ -13,7 +13,7 @@ let server,
 const SERVER_READY_MESSAGE = /The server is running at http:\/\/(.*?)\//
 
 {{#if_eq template 'basic'}}
-const serverPath = path.join(`${config.path.root}/build/development/server`, 'index.js')
+const serverPath = path.join(`${config.path.root}/build/development/server`, 'server.js')
 {{/if_eq}}
 {{#if_eq template 'ssr'}}
 const { output } = webpackConfig.node[1]
@@ -42,7 +42,7 @@ function runServer(fs, cb) {
         server.kill('SIGTERM')
     }
 
-    server = cp.spawn('node', [serverPath], {
+    server = cp.spawn('babel-node', [serverPath], {
         env: Object.assign({
             NODE_ENV: 'development',
             {{#if_eq template 'ssr'}}
