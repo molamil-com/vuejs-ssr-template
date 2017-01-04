@@ -1,12 +1,9 @@
 /* eslint-disable import/first */
 process.env.VUE_ENV = 'server'
 
-import path from 'path'
 import express from 'express'
 
-const fs = require('fs')
 const server = express()
-
 server.use(express.static(`/app`))
 
 /* eslint-disable no-console */
