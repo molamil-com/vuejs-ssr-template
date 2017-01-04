@@ -67,7 +67,9 @@ function createCompiler(bundle) {
 function addMiddlewares(compiler) {
     return new Promise((resolve) => {
         const historyFallbackMiddleware = historyApiFallback()
-        const hotMiddlewares = compiler.compilers.filter((compiler) => compiler.options.target !== 'node').map(compiler => webpackHotMiddleware(compiler))
+        const hotMiddlewares = compiler.compilers
+              .filter((compiler) => compiler.options.target !== 'node')
+              .map(compiler => webpackHotMiddleware(compiler))
 
         // put in config and use also in build.js
         const wpMiddleware = webpackMiddleware(compiler, {
