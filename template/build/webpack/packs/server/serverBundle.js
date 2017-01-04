@@ -1,8 +1,8 @@
 import webpack from 'webpack'
 import nodeExt from 'webpack-node-externals'
 
-import { VueServerBundleLoader } from '../loaders/vue-loaders'
-import config from '../../../config/config'
+import { VueServerBundleLoader } from '../../loaders/vue-loaders'
+import config from '../../../../config/config'
 
 const serverBundleConfig = {
     entry: [`${config.path.src}/entrypoints/server.js`],

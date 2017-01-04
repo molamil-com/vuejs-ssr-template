@@ -2,7 +2,7 @@ import path from 'path'
 import cp from 'child_process'
 import events from 'events'
 
-import webpackConfig from '../../webpack.config'
+import webpackConfig from '../../webpack/webpack.config'
 import config from '../../../config/config'
 
 import logger from '../tools/logger'

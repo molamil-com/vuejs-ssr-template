@@ -1,5 +1,5 @@
 import webpack from 'webpack'
-import renderBundleConfig from './webpack/render/render'
+import renderBundleConfig from './webpack/packs/render/render'
 
 import ora from 'ora'
 

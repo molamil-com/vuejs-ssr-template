@@ -3,7 +3,7 @@ import webpack from 'webpack'
 import merge from 'webpack-merge'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 
-import config from '../../../config/config'
+import config from '../../../../config/config'
 
 import development from './development'
 import production from './production'

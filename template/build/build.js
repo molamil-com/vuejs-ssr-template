@@ -1,5 +1,5 @@
 import webpack from 'webpack'
-import webpacks from './webpack.config'
+import webpacks from './webpack/webpack.config'
 
 import ora from 'ora'
 

@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 import nodeExt from 'webpack-node-externals'
 
-import config from '../../../config/config'
+import config from '../../../../config/config'
 
 const serverConfig = {
     entry: [`${config.path.src}/server/index.js`],

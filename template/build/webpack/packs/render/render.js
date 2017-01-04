@@ -5,7 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import PrerenderSpaPlugin from 'prerender-spa-plugin'
 
-import config from '../../../config/config'
+import config from '../../../../config/config'
 import base from '../base.js'
 import app from '../app/app.js'
 
