@@ -2,6 +2,7 @@ wiki/
 node_modules/
 realized/
 realized-ssr/
+realized-webpack/
 
 .DS_Store
 

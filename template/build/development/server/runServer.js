@@ -12,7 +12,13 @@ let server,
 
 const SERVER_READY_MESSAGE = /The server is running at http:\/\/(.*?)\//
 
+{{#if_eq template 'basic'}}
 const serverPath = path.join(`${config.path.root}/build/development/server`, 'server2.js')
+{{/if_eq}}
+{{#if_eq template 'ssr'}}
+const { output } = webpackConfig.node[1]
+const serverPath = path.join(output.path, output.filename)
+{{/if_eq}}
 
 function runServer(fs, cb) {
     function onData(data) {
@@ -39,6 +45,10 @@ function runServer(fs, cb) {
     server = cp.spawn('node', [serverPath], {
         env: Object.assign({
             NODE_ENV: 'development',
+            {{#if_eq template 'ssr'}}
+            // use output from webpack instead of conf...a bit cleaner.
+            TEMPLATE: fs.readFileSync(`${config.path.app}/index.twig`, 'utf-8'),
+            {{/if_eq}}
         }, process.env),
         silent: false,
     })
