@@ -5,8 +5,9 @@ import app from './packs/app/app.js'
 {{#if_eq template 'ssr'}}
 import server from './packs/server/server.js'
 import serverBundle from './packs/server/serverBundle.js'
-
 {{/if_eq}}
+import renderBundleConfig from './packs/render/render'
+
 const clientBundleConfig = merge(base, app)
 {{#if_eq template 'ssr'}}
 const serverBundleConfig = merge(base, serverBundle)
@@ -21,4 +22,5 @@ export default {
     {{#if_eq template 'ssr'}}
     node: [serverBundleConfig, serverConfig],
     {{/if_eq}}
+    render: [renderBundleConfig],
 }
