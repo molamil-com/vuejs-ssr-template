@@ -12,7 +12,7 @@ let buildpacks
 switch(process.argv[2]) {
 case 'render':
     buildpacks = render
-    break;
+    break
 default:
     buildpacks = browsers.concat(node)
 }
