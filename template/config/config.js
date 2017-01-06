@@ -23,9 +23,7 @@ const config = {
         src: join(__dirname, '..', '/src'),
         dist: join(__dirname, '..', '/dist'),
         app: join(__dirname, '..', '/dist/app'),
-        {{#prerender}}
         static: join(__dirname, '..', '/dist/app-static')
-        {{/prerender}}
     },
     routes: {
         static: ['/'],

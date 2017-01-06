@@ -27,10 +27,10 @@ module.exports = {
                 },
             ]
         },
-        "prerender": {
+        "vuex": {
             "type": "confirm",
-            "message": "Enable Webpack prerendering?",
-            "default": false,
+            "message": "Use VueX?",
+            "default": true,
         },
     },
     "filters": {
@@ -39,8 +39,6 @@ module.exports = {
         "src/templates/index.twig": "template == 'ssr'",
         "build/webpacks/server/**/*": "template == 'ssr'",
         "src/templates/index.html": "template == 'basic'",
-        "build/webpacks/render/**/*": "prerender",
-        "build/render.js": "prerender",
     },
     "completeMessage": "Golden!",
 }

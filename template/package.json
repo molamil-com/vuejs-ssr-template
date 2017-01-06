@@ -6,16 +6,9 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development DEBUG=app:* babel-node build/development/tools/run ../server/index",
     "build": "cross-env NODE_ENV=production babel-node build/build",
-    {{#prerender}}
     "render": "cross-env NODE_ENV=production babel-node build/render",
-    {{/prerender}}
     "clean": "rm -rf dist",
-    {{#prerender}}
-    "release": "npm run clean && npm run build && npm run render",
-    {{/prerender}}
-    {{#unless prerender}}
     "release": "npm run clean && npm run build",
-    {{/unless}}
     "lint": "cross-env NODE_ENV=production eslint src",
     "repl": "babel-node"
   },
@@ -78,9 +71,7 @@
     "ora": "^0.3.0",
     "postcss-loader": "^0.13.0",
     "precss": "^1.4.0",
-    {{#prerender}}
     "prerender-spa-plugin": "^1.3.0",
-    {{/prerender}}
     "progress-bar-webpack-plugin": "^1.9.0",
     "sass-loader": "^4.0.2",
     "string-replace-loader": "^1.0.5",
