@@ -35,7 +35,7 @@ function createBundle(webpacks) {
         const browsers = webpacks.browsers.map((pack) => {
             // create new pack instead of mutating...currently only returning non-node.
             // or just mutate and return original pack-array....
-            pack.entry = ['webpack-hot-middleware/client', pack.entry.app]
+            pack.entry = ['./build/development/server/client', pack.entry.app]
             pack.plugins.push(new webpack.HotModuleReplacementPlugin())
 
             return pack
@@ -75,13 +75,7 @@ function addMiddlewares(compiler) {
         const wpMiddleware = webpackMiddleware(compiler, {
             publicPath: '/',
             index: index,
-            stats: {
-                colors: true,
-                modules: false,
-                children: false,
-                chunks: false,
-                chunkModules: false,
-            },
+            quiet: true,
             serverSideRender: serverSideRender,
         })
 
