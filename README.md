@@ -26,6 +26,8 @@ Both release commands will build a dist folder containing you application.
 
 # DEPLOYING #
 
+# DOCUMENTATION #
+
 # CONTRIBUTING #
 
 # FAQ #
