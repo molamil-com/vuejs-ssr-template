@@ -1,4 +1,4 @@
-# README #
+# UP & BUILDING #
 
 
 The project currently uses node 6.9.3. If you use `nvm` as recommended just run `nvm use`.
@@ -23,6 +23,10 @@ $ npm run release -- render
 ```
 
 Both release commands will build a dist folder containing you application.
+
+# DEPLOYING #
+
+# CONTRIBUTING #
 
 ## CREDIT & REFERENCES ##
 
