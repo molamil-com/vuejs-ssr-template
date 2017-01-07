@@ -1,5 +1,6 @@
-# UP & BUILDING #
+Simple scaffold and bundling of Molamil Vue applications. Supports SSR and static site generation.
 
+# UP & BUILDING #
 
 The project currently uses node 6.9.3. If you use `nvm` as recommended just run `nvm use`.
 
