@@ -1,4 +1,4 @@
-Simple scaffold and bundling of Molamil Vue applications. Supports SSR and static site generation.
+Simple scaffold and bundling of Molamil Vue applications with support for SSR and static site generation.
 
 # UP & BUILDING #
 
