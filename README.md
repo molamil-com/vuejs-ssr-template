@@ -28,7 +28,9 @@ Both release commands will build a dist folder containing you application.
 
 # CONTRIBUTING #
 
-## CREDIT & REFERENCES ##
+# FAQ #
+
+### CREDIT & REFERENCES ###
 
 * https://github.com/vuejs/vue
 * https://github.com/webpack/webpack
