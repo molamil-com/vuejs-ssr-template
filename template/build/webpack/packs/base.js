@@ -1,4 +1,4 @@
-const BUILD_ENV = process.env.NODE_ENV == 'production' && ((process.argv[process.argv.length - 1] == 'staging' && 'staging') || 'production')
+const BUILD_ENV = process.env.NODE_ENV == 'production' && ((process.argv.length > 2 && process.argv[process.argv.length - 1] != 'render' && process.argv[process.argv.length - 1]) || 'production')
 
 import webpack from 'webpack'
 import ExtendedDefinePlugin from 'extended-define-webpack-plugin'
