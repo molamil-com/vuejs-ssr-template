@@ -46,6 +46,7 @@ const baseConfig = {
     plugins: [
         new webpack.ProvidePlugin({
             debug: 'debug',
+            _: 'lodash',
         }),
     ],
 }
