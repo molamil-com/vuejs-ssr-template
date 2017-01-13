@@ -29,6 +29,8 @@ Both release commands will build a dist folder containing you application.
 
 # DOCUMENTATION #
 
+[wiki docs](https://bitbucket.org/molamil/vuejs-ssr-template/wiki)
+
 # CONTRIBUTING #
 
 # FAQ #
