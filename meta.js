@@ -32,8 +32,14 @@ module.exports = {
             "message": "Use VueX?",
             "default": true,
         },
+        "susy": {
+            "type": "confirm",
+            "message": "Add Susy?",
+            "default": true,
+        },
     },
     "filters": {
+        "src/assets/styles/common/_susy.scss": "susy",
         "src/server/**/*": "template == 'ssr'",
         "src/entrypoints/server.js": "template == 'ssr'",
         "src/templates/index.twig": "template == 'ssr'",

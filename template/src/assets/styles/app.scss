@@ -1,1 +1,23 @@
-$color: black;
+@import "common/utils";
+{{#susy}}
+@import "common/susy";
+{{/susy}}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+
+    font-size: 1.4rem;
+    font-style: normal;
+}
+
+h1, h2, h3, h4, h5, p, span {
+    font-size: 1em;
+    line-height: 1em;
+
+    margin: 0;
+    padding: 0;
+}
