@@ -25,6 +25,12 @@ $ npm run release -- render
 
 Both release commands will build a dist folder containing you application.
 
+The last flag passed to npm defines an environment to use. For example,
+
+```
+$ npm run release -- render staging
+```
+
 # DEPLOYING #
 
 # DOCUMENTATION #
