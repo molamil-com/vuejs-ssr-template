@@ -13,6 +13,7 @@
         },
         mounted() {
             debug('app:info')('App mounted!')
+            debug('app:info')(`Environment: ${ENV.BUILD_ENV}`)
         },
     }
 </script>

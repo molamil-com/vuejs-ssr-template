@@ -1,4 +1,8 @@
+const BUILD_ENV = process.env.NODE_ENV == 'production' && ((process.argv[process.argv.length - 1] == 'staging' && 'staging') || 'production')
+
 import webpack from 'webpack'
+import ExtendedDefinePlugin from 'extended-define-webpack-plugin'
+
 import config from '../../../config/config'
 
 const baseConfig = {
@@ -47,6 +51,9 @@ const baseConfig = {
         new webpack.ProvidePlugin({
             debug: 'debug',
             _: 'lodash',
+        }),
+        new ExtendedDefinePlugin({
+            ENV: config[BUILD_ENV || 'development'].env,
         }),
     ],
 }

@@ -1,22 +1,30 @@
 import { join, resolve } from 'path'
 
 const config = {
-    build: {
+    development: {
         env : {
-            NODE_ENV: 'production'
-        },
-        cssSourceMap: false,
-        productionGzip: false,
-        productionGzipExtensions: ['js', 'css']
-    },
-    dev: {
-        env : {
-            NODE_ENV: 'development'
+            BUILD_ENV: 'development'
         },
         proxyTable: {},
         // (https://github.com/webpack/css-loader#sourcemaps)
         cssSourceMap: false,
         port: 5000
+    },
+    staging: {
+        env : {
+            BUILD_ENV: 'staging'
+        },
+        cssSourceMap: false,
+        productionGzip: false,
+        productionGzipExtensions: ['js', 'css']
+    },
+    production: {
+        env : {
+            BUILD_ENV: 'production'
+        },
+        cssSourceMap: false,
+        productionGzip: false,
+        productionGzipExtensions: ['js', 'css']
     },
     path: {
         root: resolve(__dirname, '..'),
