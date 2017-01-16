@@ -9,7 +9,6 @@
     },
     "globals": {
         "debug": true,
-        "_": true,
         "ENV": true
     },
     "extends": "airbnb-base",

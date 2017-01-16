@@ -50,7 +50,6 @@ const baseConfig = {
     plugins: [
         new webpack.ProvidePlugin({
             debug: 'debug',
-            _: 'lodash',
         }),
         new ExtendedDefinePlugin({
             ENV: config[BUILD_ENV || 'development'].env,
