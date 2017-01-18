@@ -12,7 +12,7 @@ export default {
         filename: 'js/[name].js',
         chunkFilename: 'js/[id].js',
     },
-    devtool: '#eval-source-maps',
+    devtool: '#inline-source-map',
     module: {
         rules: [
             {
