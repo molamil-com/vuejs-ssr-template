@@ -35,7 +35,7 @@ export default {
             vue: {
                 loaders: {
                     css: 'vue-style-loader!css-loader',
-                    scss: 'vue-style-loader!css-loader!sass-loader',
+                    scss: 'vue-style-loader!css-loader?sourceMap!sass-loader?sourceMap',
                 },
             },
         }),
