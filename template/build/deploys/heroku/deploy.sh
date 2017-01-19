@@ -13,14 +13,14 @@ cp -r $PATH_TO_DIST/dist .
 
 echo "preparing slug runtime"
 npm install --production
-curl http://nodejs.org/dist/v6.7.0/node-v6.7.0-linux-x64.tar.gz | tar xzv > /dev/null 2>&1
+curl http://nodejs.org/dist/v6.9.3/node-v6.9.3-linux-x64.tar.gz | tar xzv > /dev/null 2>&1
 
 echo "packaging slug..."
 cd ..
 tar czfv slug.tgz "./app" > /dev/null 2>&1
 
 echo "deploying slug..."
-resp=$(curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/vnd.heroku+json; version=3' -H "Authorization: Bearer ${DEPLOY_KEY}" -d '{"process_types":{"web":"node-v6.7.0-linux-x64/bin/node dist/server.js"}}' $slugs_endpoint)
+resp=$(curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/vnd.heroku+json; version=3' -H "Authorization: Bearer ${DEPLOY_KEY}" -d '{"process_types":{"web":"node-v6.9.3-linux-x64/bin/node dist/server.js"}}' $slugs_endpoint)
 
 blob_url=$(echo ${resp} | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["blob"]["url"];')
 slug_id=$(echo ${resp} | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["id"];')
