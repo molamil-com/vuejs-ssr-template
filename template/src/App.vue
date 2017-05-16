@@ -18,7 +18,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="sass">
 @import 'assets/styles/app';
 
 #app {
