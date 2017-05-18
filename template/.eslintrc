@@ -27,7 +27,6 @@
         "max-len": "off",
         "no-unused-vars": "off",
         "no-undef": "off",
-        "no-mixed-operators": "off",
     },
     "defaultSeverity": "warning",
     "plugins": [
