@@ -24,6 +24,10 @@
         }],
         "no-param-reassign": [1, { "props": false }],
         "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+        "max-len": "off",
+        "no-unused-vars": "off",
+        "no-undef": "off",
+        "no-mixed-operators": "off",
     },
     "defaultSeverity": "warning",
     "plugins": [
