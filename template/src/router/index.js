@@ -6,9 +6,10 @@ import BasePage from 'components/pages/BasePage'
 import TypographyPage from 'components/pages/TypographyPage'
 import ComponentsPage from 'components/pages/ComponentsPage'
 import Footer from 'components/blocks/Footer'
-import Footer from 'components/blocks/MainMenu'
+import MainMenu from 'components/blocks/MainMenu'
 {{/unless_eq}}
 {{/unless_eq}}
+
 Vue.use(Router)
 
 {{#unless_eq setup 'nothing'}}
@@ -21,16 +22,34 @@ const routes = [
             footer: Footer,
             menu: MainMenu,
             default: BasePage,
-        }
+        },
     },
     {
-        path: '/',
-        name: 'home',
+        path: '/basepage/:foo?/:bar?',
+        name: 'BasePageWithOptionalParameters',
         components: {
             footer: Footer,
             menu: MainMenu,
             default: BasePage,
-        }
+        },
+    },
+    {
+        path: '/typography',
+        name: 'TypographyPage',
+        components: {
+            footer: Footer,
+            menu: MainMenu,
+            default: TypographyPage,
+        },
+    },
+    {
+        path: '/components',
+        name: 'ComponentsPage',
+        components: {
+            footer: Footer,
+            menu: MainMenu,
+            default: ComponentsPage,
+        },
     },
 ]
 {{/unless_eq}}

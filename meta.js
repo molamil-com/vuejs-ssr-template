@@ -39,10 +39,10 @@ module.exports = {
         },
         "setup": {
             "type": "list",
-            "message": "Boilerplate setup and libs.",
+            "message": "Boilerplate setup",
             "choices": [
                 {
-                    "name": "Full",
+                    "name": "Full site with libs and utils",
                     "value": "full",
                     "default": true, 
                 },
@@ -58,59 +58,27 @@ module.exports = {
                 },
                 {
                     "name": "Nothing.",
-                    "value": "base", 
+                    "value": "nothing", 
                 },
 
             ],
         },
     },
+    "helpers": {
+        str: (str) => {
+            return str
+        },
+    },
+    "skipInterpolation": "src/components/**/*.+(vue|js)",
     "filters": {
+        "src/components/**/*.+(vue|scss|js)": "setup == 'full' || setup == 'examples'",
+        "src/api/**/*.js": "setup == 'full' || setup == 'examples'",
         "src/assets/styles/common/_susy.scss": "susy",
         "src/server/**/*": "template == 'ssr'",
         "src/entrypoints/server.js": "template == 'ssr'",
         "src/templates/index.twig": "template == 'ssr'",
         "src/templates/index.html": "template == 'basic'",
         "build/webpack/packs/server/**/*": "template == 'ssr'",
-    },
-    "helpers": {
-        ifCond: (v1, operator, v2, options) => {
-            console.log(operator)
-            switch (operator)
-            {
-                case "==":
-                    return (v1==v2)?options.fn(this):options.inverse(this);
-
-                case "!=":
-                    return (v1!=v2)?options.fn(this):options.inverse(this);
-
-                case "===":
-                    return (v1===v2)?options.fn(this):options.inverse(this);
-
-                case "!==":
-                    return (v1!==v2)?options.fn(this):options.inverse(this);
-
-                case "&&":
-                    return (v1&&v2)?options.fn(this):options.inverse(this);
-
-                case "||":
-                    return (v1||v2)?options.fn(this):options.inverse(this);
-
-                case "<":
-                    return (v1<v2)?options.fn(this):options.inverse(this);
-
-                case "<=":
-                    return (v1<=v2)?options.fn(this):options.inverse(this);
-
-                case ">":
-                    return (v1>v2)?options.fn(this):options.inverse(this);
-
-                case ">=":
-                 return (v1>=v2)?options.fn(this):options.inverse(this);
-
-                default:
-                    return eval(""+v1+operator+v2)?options.fn(this):options.inverse(this);
-            }
-        },
     },
     "completeMessage": "Golden!",
 }

@@ -1,7 +1,17 @@
 <template>
     <div id="app">
         <img class="logo" src="~assets/images/logo.png" ref="logo">
+        {{#unless_eq setup 'nothing'}}
+        {{#unless_eq setup 'libs'}}
+        <router-view name="menu"></router-view>
+        {{/unless_eq}}
+        {{/unless_eq}}
         <router-view></router-view>
+        {{#unless_eq setup 'nothing'}}
+        {{#unless_eq setup 'libs'}}
+        <router-view name="footer"></router-view>
+        {{/unless_eq}}
+        {{/unless_eq}}
     </div>
 </template>
 
