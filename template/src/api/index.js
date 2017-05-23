@@ -2,11 +2,11 @@ import request from 'superagent'
 import _ from 'lodash'
 import mock from './mock/index'
 
-// on client we can do without protocol. But serverside we need it.
-const protocol = (typeof window === 'undefined') ? 'http:' : ''
-const server = `${protocol}//api.radio24syv.dk/v2/`
+const server = '/'
 
-// mock.setup([`${protocol}//api.radio24syv.dk/`, `${protocol}//r24syv-backend-staging-v2.herokuapp.com/v2/`])
+// setup mocked endpoints
+mock.get(`${server}site`, mock.data.site)
+mock.get(`${server}pages/:id`)
 
 const headers = {
     Accept: 'application/json',
@@ -18,14 +18,26 @@ function fetch(path, query) {
     return new Promise((resolve, reject) => {
         // do not prepend server to path if path is absolute.
         const url = path.match(/^http/g) ? path : `${server}${path}`
+        debug('app:api')('fetching url: %s', url)
         request.get(url).set(headers).query(q).then(
-            function success(res) {
-                debug('app:api')('%s', JSON.stringify(res))
+            (res) => {
+                // success
+                resolve(res)
             },
-            function failure(res) {
+            (res) => {
+                // failure
                 debug('app:api')('fetch: %s failure', path)
-                debug('app:api')('%s', JSON.stringify(res))
-            },
+                debug('app:api')('%o', res)
+                resolve(res)
+            }
         )
     })
+}
+
+export function fetchSite() {
+    return fetch('site')
+}
+
+export function fetchPage(id, query) {
+    return fetch(`pages/${id}`, query)
 }

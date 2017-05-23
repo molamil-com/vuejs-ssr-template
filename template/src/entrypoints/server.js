@@ -2,24 +2,16 @@ import { vm, router, store } from 'app'
 
 export default (context) => {
     router.push(context.url)
-
     /* eslint-disable array-callback-return, consistent-return */
     return Promise.all(router.getMatchedComponents().map((component) => {
         if (component) {
-            // Look into exactly how....
-            if (component.meta) {
-                const meta = component.meta()
-                context.meta = meta
-            }
-
-            if (component.preFetch) {
-                return component.preFetch(store)
+            if (component.serverData) {
+                return component.serverData(store)
             }
         }
     })).then(() => {
         context.initialState = store.state
-        // context.meta = store.meta
-
+        context.meta = store.state.meta
         return vm
     })
 }

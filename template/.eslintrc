@@ -27,7 +27,7 @@
         "max-len": "off",
         "no-unused-vars": "off",
         "no-undef": "off",
-        "no-bitwise": "off
+        "no-bitwise": "off"
     },
     "defaultSeverity": "warning",
     "plugins": [

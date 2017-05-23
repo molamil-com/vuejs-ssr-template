@@ -16,12 +16,23 @@
 </template>
 
 <script>
+    {{#unless_eq setup 'nothing'}}
+    {{#unless_eq setup 'examples'}}
+    import ua from 'assets/UserAgent'
+    
+    {{/unless_eq}}
+    {{/unless_eq}}
     export default {
         name: 'app',
         data() {
             return { }
         },
         mounted() {
+            {{#unless_eq setup 'nothing'}}
+            {{#unless_eq setup 'examples'}}
+            ua()
+            {{/unless_eq}}
+            {{/unless_eq}}
             debug('app:info')('App mounted!')
             debug('app:info')(`Environment: ${ENV.BUILD_ENV}`)
         },
@@ -31,17 +42,11 @@
 <style lang="sass">
 @import 'assets/styles/app';
 
-#app {
+body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
     color: black;
-    margin-top: 165px;
-}
-
-.logo {
-    width: 105px;
-    display: inline-block;
-    vertical-align: middle;
+    margin:0;
+    padding:0;
 }
 </style>

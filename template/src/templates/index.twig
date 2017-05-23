@@ -4,11 +4,11 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% for meta in context.meta %}
-            <meta name="\{{ meta.name }}" content="\{{ meta.content }}">
+        {% for tag in context.meta.tags %}
+            <meta {{tag.name}}="{{ tag.nameValue }}" content="{{ tag.content }}">
         {% endfor %}
 
-        <title></title>
+        <title>{{context.meta.title}}</title>
     </head>
     <body>
         <script>

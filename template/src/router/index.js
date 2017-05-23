@@ -25,7 +25,7 @@ const routes = [
         },
     },
     {
-        path: '/basepage/:foo?/:bar?',
+        path: '/pages/:page_id?/:bar?',
         name: 'BasePageWithOptionalParameters',
         components: {
             footer: Footer,

@@ -60,7 +60,6 @@ module.exports = {
                     "name": "Nothing.",
                     "value": "nothing", 
                 },
-
             ],
         },
     },
@@ -68,6 +67,18 @@ module.exports = {
         str: (str) => {
             return str
         },
+        or: () => {
+            const len = arguments.length - 1
+            const options = arguments[len]
+
+            for (let i = 0; i < len; i++) {
+                if (arguments[i]) {
+                    return options.fn(this)
+                }
+            }
+
+            return options.inverse(this)
+        }
     },
     "skipInterpolation": "src/components/**/*.+(vue|js)",
     "filters": {
