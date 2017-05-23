@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>BasePage</h1>
+        <img class="logo" src="~assets/images/logo.png" ref="logo">
         <h2><small>fullPath: </small>{{this.$route.fullPath}}</h2>
         <h2><small>name: </small>{{this.$route.name}}</h2>
         <h2><small>params: </small>{{JSON.stringify(this.$route.params)}}</h2>

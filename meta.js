@@ -67,18 +67,18 @@ module.exports = {
         str: (str) => {
             return str
         },
-        or: () => {
-            const len = arguments.length - 1
-            const options = arguments[len]
-
-            for (let i = 0; i < len; i++) {
-                if (arguments[i]) {
-                    return options.fn(this)
-                }
+        if_or_eq: (...arguments) => {
+            const args = [...arguments]
+            const opts = args[args.length-1]
+            const params = args.splice(0,args.length-1)
+            for(let i = 0; i<params.length; i+=2){
+                if(params[i] === params[i+1]){
+                    return opts.fn(this)
+                } 
             }
+            return opts.inverse(this)
+        },
 
-            return options.inverse(this)
-        }
     },
     "skipInterpolation": "src/components/**/*.+(vue|js)",
     "filters": {

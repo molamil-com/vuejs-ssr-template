@@ -1,38 +1,30 @@
 <template>
     <div id="app">
-        <img class="logo" src="~assets/images/logo.png" ref="logo">
-        {{#unless_eq setup 'nothing'}}
-        {{#unless_eq setup 'libs'}}
+        {{#if_or_eq setup 'examples' setup 'full'}}
         <router-view name="menu"></router-view>
-        {{/unless_eq}}
-        {{/unless_eq}}
+        {{/if_or_eq}}
         <router-view></router-view>
-        {{#unless_eq setup 'nothing'}}
-        {{#unless_eq setup 'libs'}}
+        {{#if_or_eq setup 'examples' setup 'full'}}
         <router-view name="footer"></router-view>
-        {{/unless_eq}}
-        {{/unless_eq}}
+        {{/if_or_eq}}
     </div>
 </template>
 
 <script>
-    {{#unless_eq setup 'nothing'}}
-    {{#unless_eq setup 'examples'}}
+    {{#if_or_eq setup 'examples' setup 'full'}}
     import ua from 'assets/UserAgent'
+
+    {{/if_or_eq}}
     
-    {{/unless_eq}}
-    {{/unless_eq}}
     export default {
         name: 'app',
         data() {
             return { }
         },
         mounted() {
-            {{#unless_eq setup 'nothing'}}
-            {{#unless_eq setup 'examples'}}
+            {{#if_or_eq setup 'examples' setup 'full'}}
             ua()
-            {{/unless_eq}}
-            {{/unless_eq}}
+            {{/if_or_eq}}
             debug('app:info')('App mounted!')
             debug('app:info')(`Environment: ${ENV.BUILD_ENV}`)
         },
