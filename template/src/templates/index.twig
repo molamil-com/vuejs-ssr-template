@@ -5,10 +5,10 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% for tag in context.meta.tags %}
-            <meta {{tag.name}}="{{ tag.nameValue }}" content="{{ tag.content }}">
+            <meta \{{tag.name}}="\{{ tag.nameValue }}" content="\{{ tag.content }}">
         {% endfor %}
 
-        <title>{{context.meta.title}}</title>
+        <title>\{{context.meta.title}}</title>
     </head>
     <body>
         <script>
