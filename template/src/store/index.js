@@ -1,9 +1,29 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+
 import * as api from 'api'
 
 Vue.use(Vuex)
 
+{{#if_eq setup 'nothing'}}
+const defaultState = {
+}
+
+/* eslint-disable no-underscore-dangle, no-undef */
+const inBrowser = typeof window !== 'undefined'
+const state = (inBrowser && window.__INITIAL_STATE__) || defaultState
+
+const mutations = {
+}
+
+const actions = {
+}
+
+const getters = {
+}
+{{/if_eq}}
+
+{{#unless_eq setup 'nothing'}}
 const defaultState = {
     meta: {
         tags: [],
@@ -76,6 +96,7 @@ const actions = {
 
 const getters = {
 }
+{{/unless_eq}}
 
 const store = new Vuex.Store({
     state,

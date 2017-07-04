@@ -14,6 +14,7 @@
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "es6-promise": "^4.0.5",
+    "superagent": "^3.5.2",
     {{#if_eq template 'ssr'}}
     "express": "^4.14.0",
     "node-twig": "^1.1.0",
@@ -26,7 +27,6 @@
     {{#unless_eq setup 'examples'}}
     "gsap": "^1.19.1",
     "lodash": "^4.17.4",
-    "superagent": "^3.5.2",
     "superagent-mocker": "^0.5.2",
     {{/unless_eq}}
     {{/unless_eq}}

@@ -1,5 +1,8 @@
 <template>
     <div id="app">
+        {{#if_eq setup 'nothing'}}
+        <img class="logo" src="~assets/images/logo.png">
+        {{/if_eq}}
         {{#if_or_eq setup 'examples' setup 'full'}}
         <router-view name="menu"></router-view>
         {{/if_or_eq}}
@@ -15,7 +18,6 @@
     import ua from 'assets/UserAgent'
 
     {{/if_or_eq}}
-    
     export default {
         name: 'app',
         data() {
@@ -41,4 +43,18 @@ body {
     margin:0;
     padding:0;
 }
+{{#if_eq setup 'nothing'}}
+#app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 165px;
+}
+
+.logo {
+    width: 105px;
+    display: inline-block;
+    vertical-align: middle;
+}
+{{/if_eq}}
 </style>

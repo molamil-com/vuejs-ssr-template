@@ -1,4 +1,5 @@
 import request from 'superagent'
+{{#unless_eq setup 'nothing'}}
 import _ from 'lodash'
 import mock from './mock/index'
 
@@ -41,3 +42,4 @@ export function fetchSite() {
 export function fetchPage(id, query) {
     return fetch(`pages/${id}`, query)
 }
+{{/unless_eq}}

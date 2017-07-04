@@ -44,21 +44,16 @@ module.exports = {
                 {
                     "name": "Full site with libs and utils",
                     "value": "full",
-                    "default": true, 
+                    "default": true,
                 },
                 {
                     "name": "Boilerplate examples only",
                     "value": "examples",
-                    "default": false, 
-                },
-                {
-                    "name": "Libs and utils only",
-                    "value": "libs",
-                    "default": false, 
+                    "default": false,
                 },
                 {
                     "name": "Nothing.",
-                    "value": "nothing", 
+                    "value": "nothing",
                 },
             ],
         },
@@ -74,7 +69,7 @@ module.exports = {
             for(let i = 0; i<params.length; i+=2){
                 if(params[i] === params[i+1]){
                     return opts.fn(this)
-                } 
+                }
             }
             return opts.inverse(this)
         },
@@ -83,7 +78,8 @@ module.exports = {
     "skipInterpolation": "src/components/**/*.+(vue|js)",
     "filters": {
         "src/components/**/*.+(vue|scss|js)": "setup == 'full' || setup == 'examples'",
-        "src/api/**/*.js": "setup == 'full' || setup == 'examples'",
+        "src/api/mock/**/*": "setup == 'full' || setup == 'examples'",
+        "src/store/**/*": "vuex",
         "src/assets/styles/common/_susy.scss": "susy",
         "src/server/**/*": "template == 'ssr'",
         "src/entrypoints/server.js": "template == 'ssr'",
