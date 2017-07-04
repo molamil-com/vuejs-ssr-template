@@ -45,7 +45,6 @@ body {
     padding:0;
 }
 {{/if_or_eq}}
-
 {{#if_eq setup 'nothing'}}
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
