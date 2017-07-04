@@ -3,6 +3,7 @@
 @import "common/susy";
 {{/susy}}
 
+{{#if_eq setup 'nothing'}}
 html {
     font-size: 62.5%;
 }
@@ -21,3 +22,4 @@ h1, h2, h3, h4, h5, p, span {
     margin: 0;
     padding: 0;
 }
+{{/if_eq}}
