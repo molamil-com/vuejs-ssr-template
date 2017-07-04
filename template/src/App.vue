@@ -36,6 +36,7 @@
 <style lang="sass">
 @import 'assets/styles/app';
 
+{{#if_or_eq setup 'examples' setup 'full'}}
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -43,6 +44,7 @@ body {
     margin:0;
     padding:0;
 }
+{{/if_or_eq}}
 
 {{#if_eq setup 'nothing'}}
 #app {
