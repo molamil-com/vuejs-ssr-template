@@ -43,6 +43,7 @@ body {
     margin:0;
     padding:0;
 }
+
 {{#if_eq setup 'nothing'}}
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
