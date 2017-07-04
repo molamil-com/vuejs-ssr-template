@@ -20,7 +20,7 @@ const { output } = webpackConfig.node[1]
 const serverPath = path.join(output.path, output.filename)
 {{/if_eq}}
 
-function runServer(fs, cb) {
+function runServer(cb) {
     function onData(data) {
         // const time = new Date().toTimeString()
         const listening = data.toString('utf8').match(SERVER_READY_MESSAGE)
@@ -31,10 +31,7 @@ function runServer(fs, cb) {
             server.stdout.removeListener('data', onData)
             server.stdout.on('data', data => logger.log('info', `${data}`))
 
-            if (cb) {
-                emitter = new events.EventEmitter()
-                cb(null, listening[1], emitter)
-            } else if (fs.hot()) emitter.emit('hot')
+            if (cb) cb(null, listening[1])
         }
     }
 

@@ -86,13 +86,12 @@ function addMiddlewares(compiler) {
 function initServer(compiler, middlewares) {
     return new Promise((resolve) => {
         const [hotMiddlewares, wpMiddleware, historyFallbackMiddleware] = middlewares
-        const fs = wpMiddleware.fileSystem
 
-        let bundlingComplete = (fs) => {
-            runServer(fs, (err, host, emitter) => {
+        let bundlingComplete = ( ) => {
+            runServer((err, host) => {
                 if (err) throw err
 
-                const bs = BrowserSync.create()
+                const bs = BrowserSync.create( )
                 bs.init({
                     proxy: {
                         // create function to add wrap wpiddle in fallback - using a config.
@@ -105,16 +104,11 @@ function initServer(compiler, middlewares) {
                     files: [],
                 }, resolve)
 
-                // put handling of fs and bs into seperate fun.
-                // probably no need for custom fs though....
-                fs.watch(`${config.path.app}/${index}`)
-                emitter.on('hot', () => bs.reload())
-
                 bundlingComplete = runServer
             })
         }
 
-        compiler.plugin('done', () => bundlingComplete(fs))
+        compiler.plugin('done', ( ) => bundlingComplete( ))
     })
 }
 
