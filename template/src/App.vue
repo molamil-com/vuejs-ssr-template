@@ -33,7 +33,7 @@
     }
 </script>
 
-<style lang="sass">
+<style lang="scss">
 @import 'assets/styles/app';
 
 body {

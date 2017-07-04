@@ -29,7 +29,6 @@
         "no-undef": "off",
         "no-bitwise": "off"
     },
-    "defaultSeverity": "warning",
     "plugins": [
         "html", "import"
     ],
