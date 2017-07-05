@@ -7,11 +7,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { VueAppBundleLoader } from '../../loaders/vue-loaders'
 import config from '../../../../config/config'
 
-const postcss = [
-    require('precss')(),
-    require('autoprefixer')({ browsers: config.browserslist }),
-]
-
 export default {
     output: {
         path: config.path.app,
@@ -68,7 +63,6 @@ export default {
                         fallback: 'vue-style-loader'
                     }),
                 },
-                postcss,
             },
             minimize: true,
             debug: false,

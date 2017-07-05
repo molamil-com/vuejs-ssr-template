@@ -8,6 +8,11 @@ import config from '../../../../config/config'
 import development from './development'
 import production from './production'
 
+const postcss = [
+    require('precss')(),
+    require('autoprefixer')({ browsers: config.browserslist }),
+]
+
 const clientBundleConfig = merge({
     entry: {
         app: `${config.path.src}/entrypoints/client.js`,
@@ -33,6 +38,11 @@ const clientBundleConfig = merge({
         ],
     },
     plugins: [
+        new webpack.LoaderOptionsPlugin({
+            vue: {
+                postcss,
+            },
+        }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks: (module, count) => (

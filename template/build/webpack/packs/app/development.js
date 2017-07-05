@@ -5,11 +5,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 import config from '../../../../config/config'
 
-const postcss = [
-    require('precss')(),
-    require('autoprefixer')({ browsers: config.browserslist }),
-]
-
 export default {
     output: {
         path: config.path.app,
@@ -42,7 +37,6 @@ export default {
                     css: 'vue-style-loader!css-loader',
                     scss: 'vue-style-loader!css-loader?sourceMap!sass-loader?sourceMap',
                 },
-                postcss,
             },
         }),
         new HtmlWebpackPlugin({
