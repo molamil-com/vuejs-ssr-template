@@ -36,6 +36,10 @@ const config = {
     routes: {
         static: ['/'],
     },
+    browserslist: [
+        '> 0.5%',
+        'last 3 versions',
+    ],
     {{#if_eq template 'ssr'}}
     modules: {
         browser: ['gsap'],
