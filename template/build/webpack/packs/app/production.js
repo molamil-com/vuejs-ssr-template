@@ -9,7 +9,7 @@ import config from '../../../../config/config'
 
 const postcss = [
     require('precss')(),
-    require('autoprefixer')({ browsers: ['last 3 versions'] }),
+    require('autoprefixer')({ browsers: config.browserslist }),
 ]
 
 export default {
