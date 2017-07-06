@@ -11,7 +11,7 @@ const historyApiFallback = () => { return (req, res, next) => { next() } }
 import historyApiFallback from 'connect-history-api-fallback'
 {{/unless_eq}}
 
-import fs from 'memory-fs'
+import MFS from 'memory-fs'
 import chalk from 'chalk'
 
 import BrowserSync from 'browser-sync'
@@ -53,7 +53,7 @@ function createCompiler(bundle) {
 
         compiler.compilers
             .filter((compiler) => compiler.options.target !== 'node')
-            .map(compiler => compiler.outputFileSystem = fs)
+            .map(compiler => compiler.outputFileSystem = new MFS())
 
         compiler.apply(new ProgressBarPlugin({
             format: `  build [:bar] ${  chalk.green.bold(':percent')  } (:elapsed seconds)`,
@@ -86,9 +86,10 @@ function addMiddlewares(compiler) {
 function initServer(compiler, middlewares) {
     return new Promise((resolve) => {
         const [hotMiddlewares, wpMiddleware, historyFallbackMiddleware] = middlewares
+        const fs = wpMiddleware.fileSystem
 
-        let bundlingComplete = ( ) => {
-            runServer((err, host) => {
+        let bundlingComplete = (fs) => {
+            runServer(fs, (err, host) => {
                 if (err) throw err
 
                 const bs = BrowserSync.create( )
@@ -108,7 +109,7 @@ function initServer(compiler, middlewares) {
             })
         }
 
-        compiler.plugin('done', ( ) => bundlingComplete( ))
+        compiler.plugin('done', ( ) => bundlingComplete(fs))
     })
 }
 

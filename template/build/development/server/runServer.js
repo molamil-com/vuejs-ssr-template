@@ -20,7 +20,7 @@ const { output } = webpackConfig.node[1]
 const serverPath = path.join(output.path, output.filename)
 {{/if_eq}}
 
-function runServer(cb) {
+function runServer(fs,cb) {
     function onData(data) {
         // const time = new Date().toTimeString()
         const listening = data.toString('utf8').match(SERVER_READY_MESSAGE)
