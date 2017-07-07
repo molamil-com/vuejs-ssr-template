@@ -33,7 +33,7 @@
     }
 </script>
 
-<style lang="sass">
+<style lang="scss">
 @import 'assets/styles/app';
 
 {{#if_or_eq setup 'examples' setup 'full'}}

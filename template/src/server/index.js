@@ -1,6 +1,5 @@
 /* eslint-disable import/first */
 process.env.VUE_ENV = 'server'
-const isProd = process.env.NODE_ENV === 'production'
 
 import path from 'path'
 import express from 'express'
@@ -11,9 +10,8 @@ const fs = require('fs')
 const vueServerRenderer = require('vue-server-renderer')
 
 const server = express()
-const template = !isProd ?
-      Twig.twig({ data: process.env.TEMPLATE }) :
-      Twig.twig({ data: fs.readFileSync(`${path.join(__dirname, './app')}/index.twig`, 'utf8') })
+const template = Twig.twig({ data: process.env.TEMPLATE ||
+                             fs.readFileSync(`${path.join(__dirname, './app')}/index.twig`, 'utf8') })
 
 const serverBundlePath = path.join(__dirname, './bundle.server.js')
 const serverBundle = fs.readFileSync(serverBundlePath, 'utf8')

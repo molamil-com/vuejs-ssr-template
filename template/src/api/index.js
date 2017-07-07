@@ -30,7 +30,7 @@ function fetch(path, query) {
                 debug('app:api')('fetch: %s failure', path)
                 debug('app:api')('%o', res)
                 resolve(res)
-            }
+            },
         )
     })
 }

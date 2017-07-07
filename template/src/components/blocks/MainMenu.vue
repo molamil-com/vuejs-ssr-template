@@ -35,7 +35,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="sass" scoped>
+<style lang="scss" scoped>
     span{
         margin-right: 5px;
         a{

@@ -1,12 +1,8 @@
 @import "~susy/sass/susy";
 
 $susy: (
-    columns: 12,  // The number of columns in your grid
-    gutters: 1/4, // The size of a gutter in relation to a single column
+    'columns': susy-repeat(4),
+    'gutters': 0.25,
+    'spread': 'narrow',
+    'container-spread': 'narrow',
 );
-
-$container-style: fluid;
-
-.wrap {
-    @include container;
-}

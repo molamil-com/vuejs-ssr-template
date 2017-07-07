@@ -11,7 +11,7 @@ const historyApiFallback = () => { return (req, res, next) => { next() } }
 import historyApiFallback from 'connect-history-api-fallback'
 {{/unless_eq}}
 
-import fs from 'memory-fs'
+import MFS from 'memory-fs'
 import chalk from 'chalk'
 
 import BrowserSync from 'browser-sync'
@@ -53,7 +53,7 @@ function createCompiler(bundle) {
 
         compiler.compilers
             .filter((compiler) => compiler.options.target !== 'node')
-            .map(compiler => compiler.outputFileSystem = fs)
+            .map(compiler => compiler.outputFileSystem = new MFS())
 
         compiler.apply(new ProgressBarPlugin({
             format: `  build [:bar] ${  chalk.green.bold(':percent')  } (:elapsed seconds)`,
@@ -89,10 +89,10 @@ function initServer(compiler, middlewares) {
         const fs = wpMiddleware.fileSystem
 
         let bundlingComplete = (fs) => {
-            runServer(fs, (err, host, emitter) => {
+            runServer(fs, (err, host) => {
                 if (err) throw err
 
-                const bs = BrowserSync.create()
+                const bs = BrowserSync.create( )
                 bs.init({
                     proxy: {
                         // create function to add wrap wpiddle in fallback - using a config.
@@ -105,16 +105,11 @@ function initServer(compiler, middlewares) {
                     files: [],
                 }, resolve)
 
-                // put handling of fs and bs into seperate fun.
-                // probably no need for custom fs though....
-                fs.watch(`${config.path.app}/${index}`)
-                emitter.on('hot', () => bs.reload())
-
                 bundlingComplete = runServer
             })
         }
 
-        compiler.plugin('done', () => bundlingComplete(fs))
+        compiler.plugin('done', ( ) => bundlingComplete(fs))
     })
 }
 
