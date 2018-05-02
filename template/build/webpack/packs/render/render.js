@@ -12,7 +12,6 @@ import app from '../app/app.js'
 const renderBundleConfig = merge(base, app, {
     output: {
         path: config.path.static,
-        publicPath: '/',
         filename: 'js/[name].[chunkhash].js',
         chunkFilename: 'js/[id].[chunkhash].js',
     },

@@ -5,6 +5,12 @@ import ExtendedDefinePlugin from 'extended-define-webpack-plugin'
 
 import config from '../../../config/config'
 
+// Read publicPath from config, set root default if not present for current ENV
+let publicPath = config[BUILD_ENV].env.PUBLIC_PATH
+if (typeof publicPath === 'undefined') {
+    publicPath = '/'
+}
+
 const baseConfig = {
     resolve: {
         extensions: ['.js', '.json', '.vue', '.css', '.scss'],
@@ -12,6 +18,9 @@ const baseConfig = {
         alias: {
             vue$: process.env.NODE_ENV === 'production' ? 'vue/dist/vue.min.js'  : 'vue/dist/vue.js',
         },
+    },
+    output: {
+        publicPath: publicPath,
     },
     module: {
         rules: [
