@@ -6,9 +6,9 @@ import ExtendedDefinePlugin from 'extended-define-webpack-plugin'
 import config from '../../../config/config'
 
 // Read publicPath from config, set root default if not present for current ENV
-let publicPath = config[BUILD_ENV].env.PUBLIC_PATH
-if (typeof publicPath === 'undefined') {
-    publicPath = '/'
+let publicPath = '/'
+if (BUILD_ENV && typeof config[BUILD_ENV].env.PUBLIC_PATH !== 'undefined') {
+    publicPath = config[BUILD_ENV].env.PUBLIC_PATH
 }
 
 const baseConfig = {
