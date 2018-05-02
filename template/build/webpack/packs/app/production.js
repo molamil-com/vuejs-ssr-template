@@ -10,7 +10,6 @@ import config from '../../../../config/config'
 export default {
     output: {
         path: config.path.app,
-        publicPath: '/',
         filename: 'js/[name].[chunkhash].js',
         chunkFilename: 'js/[id].[chunkhash].js',
     },

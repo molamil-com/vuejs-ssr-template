@@ -8,7 +8,6 @@ import config from '../../../../config/config'
 export default {
     output: {
         path: config.path.app,
-        publicPath: '/',
         filename: 'js/[name].js',
         chunkFilename: 'js/[id].js',
     },

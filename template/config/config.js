@@ -3,7 +3,8 @@ import { join, resolve } from 'path'
 const config = {
     development: {
         env : {
-            BUILD_ENV: 'development'
+            BUILD_ENV: 'development',
+            PUBLIC_PATH: '/'
         },
         proxyTable: {},
         // (https://github.com/webpack/css-loader#sourcemaps)
@@ -12,7 +13,8 @@ const config = {
     },
     staging: {
         env : {
-            BUILD_ENV: 'staging'
+            BUILD_ENV: 'staging',
+            PUBLIC_PATH: '/'
         },
         cssSourceMap: false,
         productionGzip: false,
@@ -20,7 +22,8 @@ const config = {
     },
     production: {
         env : {
-            BUILD_ENV: 'production'
+            BUILD_ENV: 'production',
+            PUBLIC_PATH: '/'
         },
         cssSourceMap: false,
         productionGzip: false,
